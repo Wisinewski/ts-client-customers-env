@@ -1,12 +1,13 @@
 {
   "name": "ts-client-customers-env",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "repository": "https://github.com/Wisinewski/ts-client-customers-env",
+  "author": "Giancarlo Gomes <giancarlo.gomes@fcamara.com.br>",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "git-commit-msg-linter": "^3.2.8"
+  }
 }

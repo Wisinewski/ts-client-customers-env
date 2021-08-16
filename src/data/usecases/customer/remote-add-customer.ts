@@ -1,3 +1,4 @@
+import { ServerError } from '@/domain/errors/server-error'
 import { NotFoundError } from '@/domain/errors/not-found-error'
 import { UnexpectedError } from '@/domain/errors/unexpected-error'
 import { HttpPostClient } from '@/data/protocols/http/http-post-client'
@@ -19,6 +20,7 @@ export class RemoteAddCustomer implements AddCustomer {
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok: return null
       case HttpStatusCode.notFound: throw new NotFoundError()
+      case HttpStatusCode.serverError: throw new ServerError()
       default: throw new UnexpectedError()
     }
   }

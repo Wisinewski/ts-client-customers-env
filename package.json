@@ -4,7 +4,7 @@
   "repository": "https://github.com/Wisinewski/ts-client-customers-env",
   "author": "Giancarlo Gomes <giancarlo.gomes@fcamara.com.br>",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "license": "ISC",
   "devDependencies": {

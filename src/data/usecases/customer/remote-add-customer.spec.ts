@@ -1,7 +1,9 @@
-import faker from 'faker'
+import { UnexpectedError } from '@/domain/errors/unexpected-error'
 import { mockCustomerParams } from '@/domain/test/customer/mock-customer'
 import { HttpPostClientSpy } from '@/data/test/mock-http-client'
 import { RemoteAddCustomer } from './remote-add-customer'
+import faker from 'faker'
+import { HttpStatusCode } from '@/data/protocols/http/http-response'
 
 type SutTypes = {
   sut: RemoteAddCustomer
@@ -30,5 +32,14 @@ describe('RemoteAddCustomer', () => {
     const customer = mockCustomerParams()
     await sut.add(customer)
     expect(httpPostClientSpy.body).toBe(customer)
+  })
+
+  test('should throw UnexpectedError if HttpPostClient returns 400', async () => {
+    const { sut, httpPostClientSpy } = makeSut()
+    httpPostClientSpy.response = {
+      statusCode: HttpStatusCode.badRequest
+    }
+    const promise = sut.add(mockCustomerParams())
+    await expect(promise).rejects.toThrow(new UnexpectedError())
   })
 })

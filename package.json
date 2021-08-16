@@ -4,7 +4,10 @@
   "repository": "https://github.com/Wisinewski/ts-client-customers-env",
   "author": "Giancarlo Gomes <giancarlo.gomes@fcamara.com.br>",
   "scripts": {
-    "test": "jest"
+    "test": "jest --passWithNoTests",
+    "test:watch": "npm test -- --watch",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:cov": "npm test -- --coverage"
   },
   "license": "ISC",
   "devDependencies": {

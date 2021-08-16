@@ -1,4 +1,4 @@
-import { BadRequestError } from './../../../domain/errors/bad-request-error'
+import { UnexpectedError } from '@/domain/errors/unexpected-error'
 import { HttpPostClient } from '@/data/protocols/http/http-post-client'
 import { HttpStatusCode } from '@/data/protocols/http/http-response'
 import { Customer, CustomerParams } from '@/domain/models/customer/customer'
@@ -16,8 +16,8 @@ export class RemoteAddCustomer implements AddCustomer {
       body: customerParams
     })
     switch (httpResponse.statusCode) {
-      case HttpStatusCode.badRequest: throw new BadRequestError()
-      default: return null
+      case HttpStatusCode.ok: return null
+      default: throw new UnexpectedError()
     }
   }
 }

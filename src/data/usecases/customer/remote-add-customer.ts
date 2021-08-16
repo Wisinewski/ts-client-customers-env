@@ -10,7 +10,8 @@ export class RemoteAddCustomer implements AddCustomer {
 
   async add (customerParams: CustomerParams): Promise<Customer> {
     await this.httpPostClient.post({
-      url: this.url
+      url: this.url,
+      body: customerParams
     })
     return null
   }

@@ -1,5 +1,5 @@
-import { mockCustomerParams } from '@/domain/test/customer/mock-customer'
 import faker from 'faker'
+import { mockCustomerParams } from '@/domain/test/customer/mock-customer'
 import { HttpPostClientSpy } from '@/data/test/mock-http-client'
 import { RemoteAddCustomer } from './remote-add-customer'
 

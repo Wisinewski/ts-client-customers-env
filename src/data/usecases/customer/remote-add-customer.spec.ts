@@ -1,3 +1,4 @@
+import { ServerError } from '@/domain/errors/server-error'
 import { NotFoundError } from '@/domain/errors/not-found-error'
 import { UnexpectedError } from '@/domain/errors/unexpected-error'
 import { mockCustomerParams } from '@/domain/test/customer/mock-customer'
@@ -51,5 +52,14 @@ describe('RemoteAddCustomer', () => {
     }
     const promise = sut.add(mockCustomerParams())
     await expect(promise).rejects.toThrow(new NotFoundError())
+  })
+
+  test('should throw NotFoundError if HttpPostClient returns 500', async () => {
+    const { sut, httpPostClientSpy } = makeSut()
+    httpPostClientSpy.response = {
+      statusCode: HttpStatusCode.serverError
+    }
+    const promise = sut.add(mockCustomerParams())
+    await expect(promise).rejects.toThrow(new ServerError())
   })
 })

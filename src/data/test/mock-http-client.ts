@@ -5,7 +5,7 @@ export class HttpPostClientSpy<T, R> implements HttpPostClient<T, R> {
   url?: string
   body?: T
   response: HttpResponse<R> = {
-    statusCode: HttpStatusCode.ok
+    statusCode: HttpStatusCode.created
   }
 
   async post (params: HttpPostParams<T>): Promise<HttpResponse<R>> {

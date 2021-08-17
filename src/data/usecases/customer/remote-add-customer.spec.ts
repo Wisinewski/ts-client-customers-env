@@ -1,7 +1,7 @@
 import { ServerError } from '@/domain/errors/server-error'
 import { NotFoundError } from '@/domain/errors/not-found-error'
 import { UnexpectedError } from '@/domain/errors/unexpected-error'
-import { mockCustomerParams } from '@/domain/test/customer/mock-customer'
+import { mockCustomerParams, mockCustomer } from '@/domain/test/customer/mock-customer'
 import { HttpPostClientSpy } from '@/data/test/mock-http-client'
 import { RemoteAddCustomer } from './remote-add-customer'
 import faker from 'faker'
@@ -62,5 +62,16 @@ describe('RemoteAddCustomer', () => {
     }
     const promise = sut.add(mockCustomerParams())
     await expect(promise).rejects.toThrow(new ServerError())
+  })
+
+  test('should return a customer if HttpPostClient returns 201', async () => {
+    const { sut, httpPostClientSpy } = makeSut()
+    const httpResult = mockCustomer()
+    httpPostClientSpy.response = {
+      statusCode: HttpStatusCode.created,
+      body: httpResult
+    }
+    const customer = await sut.add(mockCustomerParams())
+    expect(customer).toEqual(httpResult)
   })
 })

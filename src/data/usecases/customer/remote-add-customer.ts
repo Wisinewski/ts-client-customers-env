@@ -18,7 +18,7 @@ export class RemoteAddCustomer implements AddCustomer {
       body: customerParams
     })
     switch (httpResponse.statusCode) {
-      case HttpStatusCode.ok: return null
+      case HttpStatusCode.created: return httpResponse.body
       case HttpStatusCode.notFound: throw new NotFoundError()
       case HttpStatusCode.serverError: throw new ServerError()
       default: throw new UnexpectedError()

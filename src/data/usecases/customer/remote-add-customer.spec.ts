@@ -6,14 +6,15 @@ import { HttpPostClientSpy } from '@/data/test/mock-http-client'
 import { RemoteAddCustomer } from './remote-add-customer'
 import faker from 'faker'
 import { HttpStatusCode } from '@/data/protocols/http/http-response'
+import { Customer, CustomerParams } from '@/domain/models/customer/customer'
 
 type SutTypes = {
   sut: RemoteAddCustomer
-  httpPostClientSpy: HttpPostClientSpy
+  httpPostClientSpy: HttpPostClientSpy<CustomerParams, Customer>
 }
 
 const makeSut = (url: string = faker.internet.url()): SutTypes => {
-  const httpPostClientSpy = new HttpPostClientSpy()
+  const httpPostClientSpy = new HttpPostClientSpy<CustomerParams, Customer>()
   const sut = new RemoteAddCustomer(url, httpPostClientSpy)
   return {
     sut,

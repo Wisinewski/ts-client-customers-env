@@ -9,7 +9,7 @@ import { AddCustomer } from '@/domain/usecases/add-customer'
 export class RemoteAddCustomer implements AddCustomer {
   constructor (
     private readonly url: string,
-    private readonly httpPostClient: HttpPostClient
+    private readonly httpPostClient: HttpPostClient<CustomerParams, Customer>
   ) {}
 
   async add (customerParams: CustomerParams): Promise<Customer> {

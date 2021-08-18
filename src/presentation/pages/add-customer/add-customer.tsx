@@ -1,3 +1,4 @@
+import Input from '@/presentation/components/input/input'
 import ModalHeader from '@/presentation/components/modal-header/modal-header'
 import React from 'react'
 import Styles from './add-customer-styles.scss'
@@ -8,43 +9,19 @@ const AddCustomer: React.FC = () => {
       <ModalHeader title="Adicionar cliente" />
 
       <form className={Styles.form}>
-        <div className={Styles.inputWrapper}>
-          <label htmlFor="name">Nome</label>
-          <input type="text" name="name" id="name" />
-        </div>
+        <Input type="text" name="name" id="name" title="Nome" />
 
         <section className={Styles.inputArea}>
           <span className={Styles.inputAreaTitle}>template</span>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="templateName">Nome</label>
-            <input type="text" name="templateName" id="templateName" />
-          </div>
+          <Input type="text" name="templateName" id="templateName" title="Nome" />
           <div className={Styles.grid50}>
-            <div className={Styles.inputWrapper}>
-              <label htmlFor="templateType">Tipo do Template</label>
-              <input type="text" name="templateType" id="templateType" />
-            </div>
-            <div className={Styles.inputWrapper}>
-              <label htmlFor="templateType">CI</label>
-              <input type="text" name="templateCi" id="templateCi" />
-            </div>
+            <Input type="text" name="templateType" id="templateType" title="Tipo" />
+            <Input type="text" name="templateCi" id="templateCi" title="CI" />
           </div>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="templateLang">Linguagem</label>
-            <input type="text" name="templateLang" id="templateLang" />
-          </div>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="templateVersion">Versão</label>
-            <input type="text" name="templateVersion" id="templateVersion" />
-          </div>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="templatePath">Caminho</label>
-            <input type="text" name="templatePath" id="templatePath" />
-          </div>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="templateTool">Ferramenta</label>
-            <input type="text" name="templateTool" id="templateTool" />
-          </div>
+          <Input type="text" name="templateLang" id="templateLang" title="Linguagem" />
+          <Input type="text" name="templateVersion" id="templateVersion" title="Versão" />
+          <Input type="text" name="templatePath" id="templatePath" title="Caminho" />
+          <Input type="text" name="templateTool" id="templateTool" title="Ferramenta" />
         </section>
 
         <button className={Styles.addButton}>
@@ -53,56 +30,27 @@ const AddCustomer: React.FC = () => {
 
         <section className={Styles.inputArea}>
           <span className={Styles.inputAreaTitle}>git</span>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="gitUser">Usuário</label>
-            <input type="text" name="gitUser" id="gitUser" />
-          </div>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="gitPassword">Senha</label>
-            <input type="password" name="gitPassword" id="gitPassword" />
-          </div>
+          <Input type="text" name="gitUser" id="gitUser" title="Usuário" />
+          <Input type="text" name="gitPassword" id="gitPassword" title="Senha" />
         </section>
 
         <section className={Styles.inputArea}>
           <span className={Styles.inputAreaTitle}>sonar</span>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="sonarHost">Host</label>
-            <input type="text" name="sonarHost" id="sonarHost" />
-          </div>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="sonarToken">Token</label>
-            <input type="text" name="sonarToken" id="sonarToken" />
-          </div>
+          <Input type="text" name="sonarHost" id="sonarHost" title="Host" />
+          <Input type="text" name="sonarToken" id="sonarToken" title="Token" />
         </section>
 
         <section className={Styles.inputArea}>
           <span className={Styles.inputAreaTitle}>remote state</span>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="remoteStateBusinessUnit">Unidade de negócios</label>
-            <input type="text" name="remoteStateBusinessUnit" id="remoteStateBusinessUnit" />
-          </div>
+          <Input type="text" name="remoteStateBusinessUnit" id="remoteStateBusinessUnit" title="Unidade de negócios" />
+
           <div className={Styles.grid50}>
-            <div className={Styles.inputWrapper}>
-              <label htmlFor="remoteStateEnvironment">Ambiente</label>
-              <input type="text" name="remoteStateEnvironment" id="remoteStateEnvironment" />
-            </div>
-            <div className={Styles.inputWrapper}>
-              <label htmlFor="remoteStateVendor">Fornecedor</label>
-              <input type="text" name="remoteStateVendor" id="remoteStateVendor" />
-            </div>
+            <Input type="text" name="remoteStateEnvironment" id="remoteStateEnvironment" title="Ambiente" />
+            <Input type="text" name="remoteStateVendor" id="remoteStateVendor" title="Fornecedor" />
           </div>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="remoteStateRegion">Região</label>
-            <input type="text" name="remoteStateRegion" id="remoteStateRegion" />
-          </div>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="remoteStateType">Tipo</label>
-            <input type="text" name="remoteStateType" id="remoteStateType" />
-          </div>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="remoteStateName">Nome</label>
-            <input type="text" name="remoteStateName" id="remoteStateName" />
-          </div>
+          <Input type="text" name="remoteStateRegion" id="remoteStateRegion" title="Região" />
+          <Input type="text" name="remoteStateType" id="remoteStateType" title="Tipo" />
+          <Input type="text" name="remoteStateName" id="remoteStateName" title="Nome" />
         </section>
 
         <button className={Styles.addButton}>
@@ -111,10 +59,7 @@ const AddCustomer: React.FC = () => {
 
         <section className={Styles.inputArea}>
           <span className={Styles.inputAreaTitle}>output</span>
-          <div className={Styles.inputWrapper}>
-            <label htmlFor="outputName">Nome</label>
-            <input type="text" name="outputName" id="outputName" />
-          </div>
+          <Input type="text" name="outputName" id="outputName" title="Nome" />
         </section>
       </form>
 

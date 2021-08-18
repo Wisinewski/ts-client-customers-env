@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Styles from './create-button-styles.scss'
 
 const CreateButton: React.FC = () => {
@@ -9,4 +9,4 @@ const CreateButton: React.FC = () => {
   )
 }
 
-export default CreateButton
+export default memo(CreateButton)

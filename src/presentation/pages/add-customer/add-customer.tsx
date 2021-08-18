@@ -20,37 +20,46 @@ const AddCustomer: React.FC = () => {
             <Input type="text" name="templateType" id="templateType" title="Tipo" />
             <Input type="text" name="templateCi" id="templateCi" title="CI" />
           </div>
-          <Input type="text" name="templateLang" id="templateLang" title="Linguagem" />
-          <Input type="text" name="templateVersion" id="templateVersion" title="Versão" />
-          <Input type="text" name="templatePath" id="templatePath" title="Caminho" />
-          <Input type="text" name="templateTool" id="templateTool" title="Ferramenta" />
+          <div className={Styles.grid50}>
+            <Input type="text" name="templateLang" id="templateLang" title="Linguagem" />
+            <Input type="text" name="templateVersion" id="templateVersion" title="Versão" />
+          </div>
+          <div className={Styles.grid50}>
+            <Input type="text" name="templatePath" id="templatePath" title="Caminho" />
+            <Input type="text" name="templateTool" id="templateTool" title="Ferramenta" />
+          </div>
         </section>
 
         <AddButton />
 
         <section className={Styles.inputArea}>
           <span className={Styles.inputAreaTitle}>git</span>
-          <Input type="text" name="gitUser" id="gitUser" title="Usuário" />
-          <Input type="text" name="gitPassword" id="gitPassword" title="Senha" />
+          <div className={Styles.grid50}>
+            <Input type="text" name="gitUser" id="gitUser" title="Usuário" />
+            <Input type="text" name="gitPassword" id="gitPassword" title="Senha" />
+          </div>
         </section>
 
         <section className={Styles.inputArea}>
           <span className={Styles.inputAreaTitle}>sonar</span>
-          <Input type="text" name="sonarHost" id="sonarHost" title="Host" />
-          <Input type="text" name="sonarToken" id="sonarToken" title="Token" />
+          <div className={Styles.grid50}>
+            <Input type="text" name="sonarHost" id="sonarHost" title="Host" />
+            <Input type="text" name="sonarToken" id="sonarToken" title="Token" />
+          </div>
         </section>
 
         <section className={Styles.inputArea}>
           <span className={Styles.inputAreaTitle}>remote state</span>
+          <Input type="text" name="remoteStateName" id="remoteStateName" title="Nome" />
           <Input type="text" name="remoteStateBusinessUnit" id="remoteStateBusinessUnit" title="Unidade de negócios" />
-
           <div className={Styles.grid50}>
             <Input type="text" name="remoteStateEnvironment" id="remoteStateEnvironment" title="Ambiente" />
             <Input type="text" name="remoteStateVendor" id="remoteStateVendor" title="Fornecedor" />
           </div>
-          <Input type="text" name="remoteStateRegion" id="remoteStateRegion" title="Região" />
-          <Input type="text" name="remoteStateType" id="remoteStateType" title="Tipo" />
-          <Input type="text" name="remoteStateName" id="remoteStateName" title="Nome" />
+          <div className={Styles.grid50}>
+            <Input type="text" name="remoteStateRegion" id="remoteStateRegion" title="Região" />
+            <Input type="text" name="remoteStateType" id="remoteStateType" title="Tipo" />
+          </div>
         </section>
 
         <AddButton />

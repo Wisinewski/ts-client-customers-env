@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Styles from './close-button-styles.scss'
 
 const CloseButton: React.FC = () => {
@@ -9,4 +9,4 @@ const CloseButton: React.FC = () => {
   )
 }
 
-export default CloseButton
+export default memo(CloseButton)

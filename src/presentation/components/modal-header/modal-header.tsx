@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import CloseButton from '../close-button/close-button'
 import Styles from './modal-header-styles.scss'
 
@@ -13,4 +13,4 @@ const ModalHeader: React.FC<Props> = (props: Props) => {
   )
 }
 
-export default ModalHeader
+export default memo(ModalHeader)

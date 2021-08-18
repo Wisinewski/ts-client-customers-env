@@ -1,3 +1,4 @@
+import CloseButton from '@/presentation/components/close-button/close-button'
 import React from 'react'
 import Styles from './add-customer-styles.scss'
 
@@ -6,9 +7,7 @@ const AddCustomer: React.FC = () => {
     <div className={Styles.addCustomer}>
       <header className={Styles.header}>
         <h1 className={Styles.title}>Adicionar cliente</h1>
-        <button className={Styles.closeButton}>
-          <i className="fas fa-times"></i>
-        </button>
+        <CloseButton />
       </header>
 
       <form className={Styles.form}>

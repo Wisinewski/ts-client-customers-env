@@ -33,23 +33,6 @@ body {
     .title {
       color: $color-title-primary;
     }
-
-    .closeButton {
-      display: flex;
-      align-items: center;
-      background: none;
-      border: none;
-
-      &:hover {
-        cursor: pointer;
-        opacity: 0.9;
-      }
-
-      i {
-        font-size: 16px;
-        color: $color-button;
-      }
-    }
   }
 
   .form {

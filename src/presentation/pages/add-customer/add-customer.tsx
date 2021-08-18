@@ -1,3 +1,4 @@
+import AddButton from '@/presentation/components/add-button/add-button'
 import CreateButton from '@/presentation/components/create-button/create-button'
 import Input from '@/presentation/components/input/input'
 import ModalHeader from '@/presentation/components/modal-header/modal-header'
@@ -25,9 +26,7 @@ const AddCustomer: React.FC = () => {
           <Input type="text" name="templateTool" id="templateTool" title="Ferramenta" />
         </section>
 
-        <button className={Styles.addButton}>
-          <i className="fas fa-plus"></i>
-        </button>
+        <AddButton />
 
         <section className={Styles.inputArea}>
           <span className={Styles.inputAreaTitle}>git</span>
@@ -54,9 +53,7 @@ const AddCustomer: React.FC = () => {
           <Input type="text" name="remoteStateName" id="remoteStateName" title="Nome" />
         </section>
 
-        <button className={Styles.addButton}>
-          <i className="fas fa-plus"></i>
-        </button>
+        <AddButton />
 
         <section className={Styles.inputArea}>
           <span className={Styles.inputAreaTitle}>output</span>

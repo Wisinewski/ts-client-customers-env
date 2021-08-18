@@ -1,14 +1,11 @@
-import CloseButton from '@/presentation/components/close-button/close-button'
+import ModalHeader from '@/presentation/components/modal-header/modal-header'
 import React from 'react'
 import Styles from './add-customer-styles.scss'
 
 const AddCustomer: React.FC = () => {
   return (
     <div className={Styles.addCustomer}>
-      <header className={Styles.header}>
-        <h1 className={Styles.title}>Adicionar cliente</h1>
-        <CloseButton />
-      </header>
+      <ModalHeader title="Adicionar cliente" />
 
       <form className={Styles.form}>
         <div className={Styles.inputWrapper}>

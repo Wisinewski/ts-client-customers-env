@@ -23,18 +23,6 @@ body {
   border-radius: 0 0 4px 4px;
   background-color: $color-bg-secondary;
 
-  .header {
-    width: 100%;
-    padding: 16px;
-    display: flex;
-    justify-content: space-between;
-    background-color: $color-header;
-
-    .title {
-      color: $color-title-primary;
-    }
-  }
-
   .form {
     padding: 24px 16px;
 

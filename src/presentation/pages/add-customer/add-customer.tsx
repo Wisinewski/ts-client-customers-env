@@ -1,3 +1,4 @@
+import CreateButton from '@/presentation/components/create-button/create-button'
 import Input from '@/presentation/components/input/input'
 import ModalHeader from '@/presentation/components/modal-header/modal-header'
 import React from 'react'
@@ -64,9 +65,7 @@ const AddCustomer: React.FC = () => {
       </form>
 
       <footer className={Styles.footer}>
-        <button className={Styles.createButton}>
-          <i className="fas fa-plus-circle"></i>
-        </button>
+        <CreateButton />
       </footer>
     </div>
   )

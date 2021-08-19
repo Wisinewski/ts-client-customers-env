@@ -50,7 +50,7 @@
   .footer {
     padding: 8px;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
   }
 }
 

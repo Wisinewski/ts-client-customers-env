@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import CloseButton from '../close-button/close-button'
+import CloseButton from '../buttons/close-button/close-button'
 import Styles from './modal-header-styles.scss'
 
 type Props = React.HTMLAttributes<HTMLElement>

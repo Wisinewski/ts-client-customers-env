@@ -12,3 +12,25 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+label {
+  font-size: 12px;
+  padding: 0 8px;
+  position: absolute;
+  left: 5px;
+  top: -9px;
+  background-color: $color-bg-secondary;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  border: 1px solid $color-bg-primary;
+  line-height: 32px;
+  padding-left: 8px;
+  background: none;
+
+  &:focus {
+    outline-color: $color-header;
+  }
+}

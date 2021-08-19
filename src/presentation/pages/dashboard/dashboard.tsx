@@ -1,8 +1,8 @@
 import React from 'react'
 import Styles from './dashboard-styles.scss'
-import CreateButton from '@/presentation/components/create-button/create-button'
-import UpdateButton from '@/presentation/components/update-button/update-button'
-import DeleteButton from '@/presentation/components/delete-button/delete-button'
+import CreateButton from '@/presentation/components/buttons/create-button/create-button'
+import UpdateButton from '@/presentation/components/buttons/update-button/update-button'
+import DeleteButton from '@/presentation/components/buttons/delete-button/delete-button'
 
 const Dashboard: React.FC = () => {
   return (

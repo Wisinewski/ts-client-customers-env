@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Dashboard from '@/presentation/pages/dashboard/dashboard'
+import AddCustomer from '@/presentation/pages/add-customer/add-customer'
 
 ReactDOM.render(
-  <Dashboard />,
+  <AddCustomer />,
   document.getElementById('main')
 )

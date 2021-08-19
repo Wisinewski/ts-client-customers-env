@@ -1,9 +1,10 @@
-@import '../../styles/colors.scss';
+@import '../../../styles/colors.scss';
 
-.addButton {
-  width: 48px;
+.createButton {
+  width: 100%;
   height: 32px;
   border: none;
+  border-radius: 4px;
   background-color: $color-header;
 
   &:hover {

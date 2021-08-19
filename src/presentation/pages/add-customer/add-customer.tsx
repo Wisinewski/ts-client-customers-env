@@ -1,5 +1,6 @@
-import AddButton from '@/presentation/components/add-button/add-button'
-import CreateButton from '@/presentation/components/create-button/create-button'
+import AddButton from '@/presentation/components/buttons/add-button/add-button'
+import CreateButton from '@/presentation/components/buttons/create-button/create-button'
+import FormStatus from '@/presentation/components/form-status/form-status'
 import Input from '@/presentation/components/input/input'
 import ModalHeader from '@/presentation/components/modal-header/modal-header'
 import React from 'react'
@@ -77,6 +78,7 @@ const AddCustomer: React.FC = () => {
       </form>
 
       <footer className={Styles.footer}>
+        <FormStatus />
         <CreateButton />
       </footer>
     </div>

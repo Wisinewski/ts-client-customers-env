@@ -7,7 +7,7 @@ const Input: React.FC<Props> = (props: Props) => {
   return (
     <div className={Styles.inputWrapper}>
       <label htmlFor={props.name}>{props.title}</label>
-      <input type={props.type} name={props.name} id={props.id} />
+      <input {...props} />
     </div>
   )
 }

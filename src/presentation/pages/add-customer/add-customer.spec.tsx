@@ -110,4 +110,14 @@ describe('Name of the group', () => {
       name: customer.name
     })
   })
+
+  test('should call Validation with correct templateName', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const templateNameInput = sut.getByTestId('templateName')
+    fireEvent.input(templateNameInput, { target: { value: customer.templates[0].name } })
+    expect(validationSpy.input).toEqual({
+      templateName: customer.templates[0].name
+    })
+  })
 })

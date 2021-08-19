@@ -24,10 +24,13 @@ label {
   background-color: $color-bg-secondary;
 }
 
+input {
+  border: none;
+}
+
 input[type="text"],
 input[type="password"] {
   width: 100%;
-  border: 1px solid $color-bg-primary;
   line-height: 32px;
   padding-left: 8px;
   padding-right: 28px;
@@ -36,4 +39,9 @@ input[type="password"] {
   &:focus {
     outline-color: $color-header;
   }
+}
+
+input[type="checkbox"] {
+  width: 72%;
+  height: 56%;
 }

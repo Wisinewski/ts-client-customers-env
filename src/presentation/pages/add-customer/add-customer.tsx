@@ -46,17 +46,17 @@ const AddCustomer: React.FC = () => {
           <section className={Styles.inputArea}>
             <span className={Styles.inputAreaTitle}>template</span>
             <Input type="text" name="templateName" id="templateName" title="Nome *" />
-            <div className={Styles.grid3}>
+            <div className={Styles.grid311}>
               <Input type="text" name="templateType" id="templateType" title="Tipo *" />
-              <Input type="text" name="templateCi" id="templateCi" title="CI" />
-              <Input type="text" name="templateCd" id="templateCd" title="CD" />
+              <Input type="checkbox" name="templateCi" id="templateCi" title="CI" />
+              <Input type="checkbox" name="templateCd" id="templateCd" title="CD" />
             </div>
-            <div className={Styles.grid3}>
+            <div className={Styles.grid111}>
               <Input type="text" name="templateVendor" id="templateVendor" title="Fornecedor" />
               <Input type="text" name="templateLang" id="templateLang" title="Linguagem *" />
               <Input type="text" name="templateVersion" id="templateVersion" title="Versão *" />
             </div>
-            <div className={Styles.grid2}>
+            <div className={Styles.grid11}>
               <Input type="text" name="templatePath" id="templatePath" title="Caminho *" />
               <Input type="text" name="templateTool" id="templateTool" title="Ferramenta *" />
             </div>
@@ -68,7 +68,7 @@ const AddCustomer: React.FC = () => {
 
           <section className={Styles.inputArea}>
             <span className={Styles.inputAreaTitle}>git</span>
-            <div className={Styles.grid2}>
+            <div className={Styles.grid11}>
               <Input type="text" name="gitUser" id="gitUser" title="Usuário *" />
               <Input type="text" name="gitPassword" id="gitPassword" title="Senha *" />
             </div>
@@ -76,7 +76,7 @@ const AddCustomer: React.FC = () => {
 
           <section className={Styles.inputArea}>
             <span className={Styles.inputAreaTitle}>sonar</span>
-            <div className={Styles.grid2}>
+            <div className={Styles.grid11}>
               <Input type="text" name="sonarHost" id="sonarHost" title="Host *" />
               <Input type="text" name="sonarToken" id="sonarToken" title="Token *" />
             </div>
@@ -85,11 +85,11 @@ const AddCustomer: React.FC = () => {
           <section className={Styles.inputArea}>
             <span className={Styles.inputAreaTitle}>remote state</span>
             <Input type="text" name="remoteStateName" id="remoteStateName" title="Nome *" />
-            <div className={Styles.grid2}>
+            <div className={Styles.grid11}>
               <Input type="text" name="remoteStateBusinessUnit" id="remoteStateBusinessUnit" title="Unidade" />
               <Input type="text" name="remoteStateEnvironment" id="remoteStateEnvironment" title="Ambiente" />
             </div>
-            <div className={Styles.grid3}>
+            <div className={Styles.grid111}>
               <Input type="text" name="remoteStateVendor" id="remoteStateVendor" title="Fornecedor *" />
               <Input type="text" name="remoteStateRegion" id="remoteStateRegion" title="Região *" />
               <Input type="text" name="remoteStateType" id="remoteStateType" title="Tipo *" />

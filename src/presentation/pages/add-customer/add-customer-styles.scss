@@ -11,15 +11,21 @@
   .form {
     padding: 24px 16px;
 
-    .grid2 {
+    .grid11 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
 
-    .grid3 {
+    .grid111 {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .grid311 {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1fr;
       gap: 16px;
     }
 

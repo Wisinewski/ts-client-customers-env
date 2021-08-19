@@ -1,19 +1,35 @@
 import React from 'react'
-import { render, RenderResult } from '@testing-library/react'
+import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react'
 import AddCustomer from './add-customer'
+import { mockCustomer } from '@/domain/test/customer/mock-customer'
+import { Validation } from '@/presentation/protocols/validation'
 
 type SutTypes = {
   sut: RenderResult
+  validationSpy: ValidationSpy
+}
+
+class ValidationSpy implements Validation {
+  input: object
+  errorMessage: string
+  validate (input: object): string {
+    this.input = input
+    return this.errorMessage
+  }
 }
 
 const makeSut = (): SutTypes => {
-  const sut = render(<AddCustomer />)
+  const validationSpy = new ValidationSpy()
+  const sut = render(<AddCustomer validation={validationSpy} />)
   return {
-    sut
+    sut,
+    validationSpy
   }
 }
 
 describe('Name of the group', () => {
+  afterEach(cleanup)
+
   test('should start with initial state', () => {
     const { sut } = makeSut()
     const errorWrap = sut.getByTestId('error-wrap')
@@ -83,5 +99,15 @@ describe('Name of the group', () => {
     const outputNameStatus = sut.getByTestId('outputName-status')
     expect(outputNameStatus.title).toBe('Campo obrigatório')
     expect(outputNameStatus.textContent).toBe('ℹ️')
+  })
+
+  test('should call Validation with correct name', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const nameInput = sut.getByTestId('name')
+    fireEvent.input(nameInput, { target: { value: customer.name } })
+    expect(validationSpy.input).toEqual({
+      name: customer.name
+    })
   })
 })

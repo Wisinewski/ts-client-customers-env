@@ -7,21 +7,39 @@ import React, { useState } from 'react'
 import Styles from './add-customer-styles.scss'
 import Context from '@/presentation/contexts/form/form-context'
 
-type StateProps = {
-  isLoading: boolean
-  errorMessage: string
-}
-
 const AddCustomer: React.FC = () => {
-  const [state] = useState<StateProps>({
-    isLoading: false,
-    errorMessage: ''
+  const [state] = useState({
+    isLoading: false
+  })
+  const [errorState] = useState({
+    name: 'Campo obrigatório',
+    templateName: 'Campo obrigatório',
+    templateType: 'Campo obrigatório',
+    templateCi: 'Campo opcional',
+    templateCd: 'Campo opcional',
+    templateVendor: 'Campo opcional',
+    templateLang: 'Campo obrigatório',
+    templateVersion: 'Campo obrigatório',
+    templatePath: 'Campo obrigatório',
+    templateTool: 'Campo obrigatório',
+    gitUser: 'Campo obrigatório',
+    gitPassword: 'Campo obrigatório',
+    sonarHost: 'Campo obrigatório',
+    sonarToken: 'Campo obrigatório',
+    remoteStateName: 'Campo obrigatório',
+    remoteStateBusinessUnit: 'Campo opcional',
+    remoteStateEnvironment: 'Campo opcional',
+    remoteStateVendor: 'Campo obrigatório',
+    remoteStateRegion: 'Campo obrigatório',
+    remoteStateType: 'Campo obrigatório',
+    outputName: 'Campo obrigatório',
+    main: ''
   })
   return (
     <div className={Styles.addCustomer}>
       <ModalHeader title="Adicionar cliente" />
 
-      <Context.Provider value={state}>
+      <Context.Provider value={{ state, errorState }}>
         <form className={Styles.form}>
           <Input type="text" name="name" id="name" title="Nome *" />
 

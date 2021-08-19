@@ -2,4 +2,18 @@
 
 .inputWrapper {
   position: relative;
+  display: flex;
+  align-items: center;
+
+  .status {
+    height: 94%;
+    width: 24px;
+    position: absolute;
+    right: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: help;
+    background-color: $color-bg-disabled;
+  }
 }

@@ -3,43 +3,51 @@ import CreateButton from '@/presentation/components/buttons/create-button/create
 import FormStatus from '@/presentation/components/form-status/form-status'
 import Input from '@/presentation/components/input/input'
 import ModalHeader from '@/presentation/components/modal-header/modal-header'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Styles from './add-customer-styles.scss'
 import Context from '@/presentation/contexts/form/form-context'
+import { Validation } from '@/presentation/protocols/validation'
 
-const AddCustomer: React.FC = () => {
-  const [state] = useState({
-    isLoading: false
+type Props = {
+  validation: Validation
+}
+
+const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
+  const [state, setState] = useState({
+    isLoading: false,
+    name: '',
+    nameError: 'Campo obrigatório',
+    templateNameError: 'Campo obrigatório',
+    templateTypeError: 'Campo obrigatório',
+    templateCiError: 'Campo opcional',
+    templateCdError: 'Campo opcional',
+    templateVendorError: 'Campo opcional',
+    templateLangError: 'Campo obrigatório',
+    templateVersionError: 'Campo obrigatório',
+    templatePathError: 'Campo obrigatório',
+    templateToolError: 'Campo obrigatório',
+    gitUserError: 'Campo obrigatório',
+    gitPasswordError: 'Campo obrigatório',
+    sonarHostError: 'Campo obrigatório',
+    sonarTokenError: 'Campo obrigatório',
+    remoteStateNameError: 'Campo obrigatório',
+    remoteStateBusinessUnitError: 'Campo opcional',
+    remoteStateEnvironmentError: 'Campo opcional',
+    remoteStateVendorError: 'Campo obrigatório',
+    remoteStateRegionError: 'Campo obrigatório',
+    remoteStateTypeError: 'Campo obrigatório',
+    outputNameError: 'Campo obrigatório',
+    mainError: ''
   })
-  const [errorState] = useState({
-    name: 'Campo obrigatório',
-    templateName: 'Campo obrigatório',
-    templateType: 'Campo obrigatório',
-    templateCi: 'Campo opcional',
-    templateCd: 'Campo opcional',
-    templateVendor: 'Campo opcional',
-    templateLang: 'Campo obrigatório',
-    templateVersion: 'Campo obrigatório',
-    templatePath: 'Campo obrigatório',
-    templateTool: 'Campo obrigatório',
-    gitUser: 'Campo obrigatório',
-    gitPassword: 'Campo obrigatório',
-    sonarHost: 'Campo obrigatório',
-    sonarToken: 'Campo obrigatório',
-    remoteStateName: 'Campo obrigatório',
-    remoteStateBusinessUnit: 'Campo opcional',
-    remoteStateEnvironment: 'Campo opcional',
-    remoteStateVendor: 'Campo obrigatório',
-    remoteStateRegion: 'Campo obrigatório',
-    remoteStateType: 'Campo obrigatório',
-    outputName: 'Campo obrigatório',
-    main: ''
-  })
+  useEffect(() => {
+    validation.validate({ name: state.name })
+  }, [state.name])
+
   return (
     <div className={Styles.addCustomer}>
       <ModalHeader title="Adicionar cliente" />
 
-      <Context.Provider value={{ state, errorState }}>
+      <Context.Provider value={{ state, setState }}>
         <form className={Styles.form}>
           <Input type="text" name="name" id="name" title="Nome *" />
 

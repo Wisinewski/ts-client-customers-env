@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import AddCustomer from '@/presentation/pages/add-customer/add-customer'
+import Router from '@/presentation/components/router/router'
 
 ReactDOM.render(
-  <AddCustomer />,
+  <Router />,
   document.getElementById('main')
 )

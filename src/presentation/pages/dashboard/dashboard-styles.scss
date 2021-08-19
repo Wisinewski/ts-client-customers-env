@@ -1,0 +1,146 @@
+@import '../../styles/colors.scss', '../../styles/global.scss';
+
+.dashboard {
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-bg-secondary;
+
+  .header {
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $color-header;
+
+    .logo {
+      font-size: 16px;
+      color: $color-bg-secondary;
+    }
+
+    .profileWrapper {
+      background-color: $color-bg-primary;
+      padding: 8px 16px;
+      border-radius: 4px;
+
+      i {
+        padding: 0 12px 0 0;
+        color: $color-bg-secondary;
+      }
+
+      button {
+        background: none;
+        border: none;
+        color: $color-bg-secondary;
+
+        &:hover {
+          cursor: pointer;
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+
+  .contentArea {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding: 24px;
+    gap: 24px;
+
+    .categoriesArea {
+      width: 100%;
+      height: 128px;
+      box-shadow: 0px 0px 1px 1px $color-bg-primary;
+
+      .header {
+        background-color: $color-bg-primary;
+        
+        h1 {
+          width: 100%;
+          font-weight: 300;
+          text-align: center;
+          color: $color-title-primary;
+        }
+      }
+
+      ul {
+      
+        li {
+          padding: 12px 16px;
+          list-style-type: none;
+          text-align: center;
+
+          &:nth-child(odd) {
+            background-color: $color-bg-inputArea;
+          }
+
+          &:hover {
+            cursor: pointer;
+            background-color: $color-header;
+            color: $color-bg-secondary;
+          }
+        }
+      }
+    }
+
+    .crudArea {
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0px 0px 1px 1px $color-bg-primary;
+      background-color: $color-bg-inputArea;
+
+      table {
+        th {
+          padding: 8px 0;
+          font-weight: 300;
+          text-align: center;
+          background-color: $color-bg-primary;
+          color: $color-bg-secondary;
+        }
+
+        td {
+          text-align: center;
+        }
+
+        tbody {
+          tr {
+
+            &:nth-child(odd) {
+              background-color: $color-bg-secondary;
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .contentAreaHeader {
+        width: 64px;
+        padding: 8px;
+        align-self: flex-end;
+      }
+    }
+  }
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+th:last-child {
+  width: 96px;
+}
+
+@media only screen and (max-width: 600px) {
+  .dashboard {
+    .contentArea {
+      padding: 24px 0px;
+      grid-template-columns: 1fr;
+    }
+  }
+}

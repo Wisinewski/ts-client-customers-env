@@ -141,12 +141,20 @@ describe('Name of the group', () => {
     })
   })
 
-  test('should call Validation with correct templateCi', () => {
+  test('should call Validation with "on" if templateCi is marked', () => {
     const { sut, validationSpy } = makeSut()
     const templateCiInput = sut.getByTestId('templateCi')
     fireEvent.click(templateCiInput)
     expect(validationSpy.input).toEqual({
       templateCi: 'on'
+    })
+  })
+
+  test('should call Validation with "off" templateCi is not marked', () => {
+    const { sut, validationSpy } = makeSut()
+    sut.getByTestId('templateCi')
+    expect(validationSpy.input).toEqual({
+      templateCi: 'off'
     })
   })
 })

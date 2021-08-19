@@ -16,6 +16,7 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
   const [state, setState] = useState({
     isLoading: false,
     name: '',
+    templateName: '',
     nameError: 'Campo obrigatório',
     templateNameError: 'Campo obrigatório',
     templateTypeError: 'Campo obrigatório',
@@ -42,6 +43,9 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
   useEffect(() => {
     validation.validate({ name: state.name })
   }, [state.name])
+  useEffect(() => {
+    validation.validate({ templateName: state.templateName })
+  }, [state.templateName])
 
   return (
     <div className={Styles.addCustomer}>

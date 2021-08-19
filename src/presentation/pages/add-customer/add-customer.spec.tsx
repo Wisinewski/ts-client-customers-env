@@ -130,4 +130,23 @@ describe('Name of the group', () => {
       templateType: customer.templates[0].type
     })
   })
+
+  test('should call Validation with correct templateType', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const templateTypeInput = sut.getByTestId('templateType')
+    fireEvent.input(templateTypeInput, { target: { value: customer.templates[0].type } })
+    expect(validationSpy.input).toEqual({
+      templateType: customer.templates[0].type
+    })
+  })
+
+  test('should call Validation with correct templateCi', () => {
+    const { sut, validationSpy } = makeSut()
+    const templateCiInput = sut.getByTestId('templateCi')
+    fireEvent.click(templateCiInput)
+    expect(validationSpy.input).toEqual({
+      templateCi: 'on'
+    })
+  })
 })

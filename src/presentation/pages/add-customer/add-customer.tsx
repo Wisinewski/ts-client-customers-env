@@ -18,7 +18,7 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     name: '',
     templateName: '',
     templateType: '',
-    templateCi: false,
+    templateCi: 'off',
     nameError: 'Campo obrigatório',
     templateNameError: 'Campo obrigatório',
     templateTypeError: 'Campo obrigatório',

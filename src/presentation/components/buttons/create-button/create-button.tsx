@@ -1,9 +1,11 @@
 import React, { memo } from 'react'
 import Styles from './create-button-styles.scss'
 
-const CreateButton: React.FC = () => {
+type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+
+const CreateButton: React.FC<Props> = (props: Props) => {
   return (
-    <button className={Styles.createButton}>
+    <button {...props} data-testid="createButton" className={Styles.createButton}>
       <i className="fas fa-plus-circle"></i>
     </button>
   )

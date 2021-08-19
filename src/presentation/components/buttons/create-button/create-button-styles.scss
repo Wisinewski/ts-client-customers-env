@@ -12,6 +12,19 @@
     opacity: 0.9;
   }
 
+  &:disabled {
+    background-color: $color-bg-disabled;
+
+    &:hover {
+      opacity: 1;
+      cursor: default;
+    }
+
+    i {
+      color: $color-disabled;
+    }
+  }
+
   i {
     font-size: 16px;
     color: $color-button;

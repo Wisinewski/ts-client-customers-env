@@ -18,8 +18,8 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     name: '',
     templateName: '',
     templateType: '',
-    templateCi: false,
-    templateCd: false,
+    templateCi: 'false',
+    templateCd: 'false',
     templateLang: '',
     templateVersion: '',
     templatePath: '',
@@ -58,61 +58,61 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     mainError: ''
   })
   useEffect(() => {
-    validation.validate({ name: state.name })
+    validation.validate('name', state.name)
   }, [state.name])
   useEffect(() => {
-    validation.validate({ templateName: state.templateName })
+    validation.validate('templateName', state.templateName)
   }, [state.templateName])
   useEffect(() => {
-    validation.validate({ templateType: state.templateType })
+    validation.validate('templateType', state.templateType)
   }, [state.templateType])
   useEffect(() => {
-    validation.validate({ templateCi: state.templateCi })
+    validation.validate('templateCi', state.templateCi)
   }, [state.templateCi])
   useEffect(() => {
-    validation.validate({ templateCd: state.templateCd })
+    validation.validate('templateCd', state.templateCd)
   }, [state.templateCd])
   useEffect(() => {
-    validation.validate({ templateLang: state.templateLang })
+    validation.validate('templateLang', state.templateLang)
   }, [state.templateLang])
   useEffect(() => {
-    validation.validate({ templateVersion: state.templateVersion })
+    validation.validate('templateVersion', state.templateVersion)
   }, [state.templateVersion])
   useEffect(() => {
-    validation.validate({ templatePath: state.templatePath })
+    validation.validate('templatePath', state.templatePath)
   }, [state.templatePath])
   useEffect(() => {
-    validation.validate({ templateTool: state.templateTool })
+    validation.validate('templateTool', state.templateTool)
   }, [state.templateTool])
   useEffect(() => {
-    validation.validate({ gitUser: state.gitUser })
+    validation.validate('gitUser', state.gitUser)
   }, [state.gitUser])
   useEffect(() => {
-    validation.validate({ gitPassword: state.gitPassword })
+    validation.validate('gitPassword', state.gitPassword)
   }, [state.gitPassword])
   useEffect(() => {
-    validation.validate({ sonarHost: state.sonarHost })
+    validation.validate('sonarHost', state.sonarHost)
   }, [state.sonarHost])
   useEffect(() => {
-    validation.validate({ remoteStateName: state.remoteStateName })
+    validation.validate('remoteStateName', state.remoteStateName)
   }, [state.remoteStateName])
   useEffect(() => {
-    validation.validate({ remoteStateBusinessUnit: state.remoteStateBusinessUnit })
+    validation.validate('remoteStateBusinessUnit', state.remoteStateBusinessUnit)
   }, [state.remoteStateBusinessUnit])
   useEffect(() => {
-    validation.validate({ remoteStateEnvironment: state.remoteStateEnvironment })
+    validation.validate('remoteStateEnvironment', state.remoteStateEnvironment)
   }, [state.remoteStateEnvironment])
   useEffect(() => {
-    validation.validate({ remoteStateVendor: state.remoteStateVendor })
+    validation.validate('remoteStateVendor', state.remoteStateVendor)
   }, [state.remoteStateVendor])
   useEffect(() => {
-    validation.validate({ remoteStateRegion: state.remoteStateRegion })
+    validation.validate('remoteStateRegion', state.remoteStateRegion)
   }, [state.remoteStateRegion])
   useEffect(() => {
-    validation.validate({ remoteStateType: state.remoteStateType })
+    validation.validate('remoteStateType', state.remoteStateType)
   }, [state.remoteStateType])
   useEffect(() => {
-    validation.validate({ outputName: state.outputName })
+    validation.validate('outputName', state.outputName)
   }, [state.outputName])
 
   return (

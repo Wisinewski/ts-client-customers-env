@@ -10,10 +10,12 @@ type SutTypes = {
 }
 
 class ValidationSpy implements Validation {
-  input: object
+  fieldName: string
+  fieldValue: string
   errorMessage: string
-  validate (input: object): string {
-    this.input = input
+  validate (fieldName: string, fieldValue: string): string {
+    this.fieldName = fieldName
+    this.fieldValue = fieldValue
     return this.errorMessage
   }
 }
@@ -106,9 +108,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const nameInput = sut.getByTestId('name')
     fireEvent.input(nameInput, { target: { value: customer.name } })
-    expect(validationSpy.input).toEqual({
-      name: customer.name
-    })
+    expect(validationSpy.fieldName).toBe('name')
+    expect(validationSpy.fieldValue).toBe(customer.name)
   })
 
   test('should call Validation with correct templateName', () => {
@@ -116,9 +117,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const templateNameInput = sut.getByTestId('templateName')
     fireEvent.input(templateNameInput, { target: { value: customer.templates[0].name } })
-    expect(validationSpy.input).toEqual({
-      templateName: customer.templates[0].name
-    })
+    expect(validationSpy.fieldName).toBe('templateName')
+    expect(validationSpy.fieldValue).toBe(customer.templates[0].name)
   })
 
   test('should call Validation with correct templateType', () => {
@@ -126,43 +126,38 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const templateTypeInput = sut.getByTestId('templateType')
     fireEvent.input(templateTypeInput, { target: { value: customer.templates[0].type } })
-    expect(validationSpy.input).toEqual({
-      templateType: customer.templates[0].type
-    })
+    expect(validationSpy.fieldName).toBe('templateType')
+    expect(validationSpy.fieldValue).toBe(customer.templates[0].type)
   })
 
   test.skip('should call Validation with "on" if templateCi is marked', () => {
     const { sut, validationSpy } = makeSut()
     const templateCiInput = sut.getByTestId('templateCi')
     fireEvent.click(templateCiInput)
-    expect(validationSpy.input).toEqual({
-      templateCi: true
-    })
+    expect(validationSpy.fieldName).toBe('templateCi')
+    expect(validationSpy.fieldValue).toBe(true)
   })
 
   test.skip('should call Validation with "off" templateCi is not marked', () => {
     const { sut, validationSpy } = makeSut()
     sut.getByTestId('templateCi')
-    expect(validationSpy.input).toEqual({
-      templateCi: false
-    })
+    expect(validationSpy.fieldName).toBe('templateCi')
+    expect(validationSpy.fieldValue).toBe(false)
   })
 
   test.skip('should call Validation with "on" if templateCd is marked', () => {
     const { sut, validationSpy } = makeSut()
     const templateCdInput = sut.getByTestId('templateCd')
     fireEvent.click(templateCdInput)
-    expect(validationSpy.input).toEqual({
-      templateCd: true
-    })
+    expect(validationSpy.fieldName).toBe('templateCd')
+    expect(validationSpy.fieldValue).toBe(true)
   })
 
   test.skip('should call Validation with "off" templateCi is not marked', () => {
     const { sut, validationSpy } = makeSut()
     sut.getByTestId('templateCi')
-    expect(validationSpy.input).toEqual({
-      templateCi: false
-    })
+    expect(validationSpy.fieldName).toBe('templateCd')
+    expect(validationSpy.fieldValue).toBe(false)
   })
 
   test('should call Validation with correct templateLang', () => {
@@ -170,9 +165,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const templateLangInput = sut.getByTestId('templateLang')
     fireEvent.input(templateLangInput, { target: { value: customer.templates[0].lang } })
-    expect(validationSpy.input).toEqual({
-      templateLang: customer.templates[0].lang
-    })
+    expect(validationSpy.fieldName).toBe('templateLang')
+    expect(validationSpy.fieldValue).toBe(customer.templates[0].lang)
   })
 
   test('should call Validation with correct templateVersion', () => {
@@ -180,9 +174,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const templateVersionInput = sut.getByTestId('templateVersion')
     fireEvent.input(templateVersionInput, { target: { value: customer.templates[0].version } })
-    expect(validationSpy.input).toEqual({
-      templateVersion: customer.templates[0].version
-    })
+    expect(validationSpy.fieldName).toBe('templateVersion')
+    expect(validationSpy.fieldValue).toBe(customer.templates[0].version)
   })
 
   test('should call Validation with correct templatePath', () => {
@@ -190,9 +183,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const templatePathInput = sut.getByTestId('templatePath')
     fireEvent.input(templatePathInput, { target: { value: customer.templates[0].path } })
-    expect(validationSpy.input).toEqual({
-      templatePath: customer.templates[0].path
-    })
+    expect(validationSpy.fieldName).toBe('templatePath')
+    expect(validationSpy.fieldValue).toBe(customer.templates[0].path)
   })
 
   test('should call Validation with correct templateTool', () => {
@@ -200,9 +192,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const templateToolInput = sut.getByTestId('templateTool')
     fireEvent.input(templateToolInput, { target: { value: customer.templates[0].tool } })
-    expect(validationSpy.input).toEqual({
-      templateTool: customer.templates[0].tool
-    })
+    expect(validationSpy.fieldName).toBe('templateTool')
+    expect(validationSpy.fieldValue).toBe(customer.templates[0].tool)
   })
 
   test('should call Validation with correct gitUser', () => {
@@ -210,9 +201,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const gitUserInput = sut.getByTestId('gitUser')
     fireEvent.input(gitUserInput, { target: { value: customer.git.user } })
-    expect(validationSpy.input).toEqual({
-      gitUser: customer.git.user
-    })
+    expect(validationSpy.fieldName).toBe('gitUser')
+    expect(validationSpy.fieldValue).toBe(customer.git.user)
   })
 
   test('should call Validation with correct gitPassword', () => {
@@ -220,9 +210,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const gitPasswordInput = sut.getByTestId('gitPassword')
     fireEvent.input(gitPasswordInput, { target: { value: customer.git.pass } })
-    expect(validationSpy.input).toEqual({
-      gitPassword: customer.git.pass
-    })
+    expect(validationSpy.fieldName).toBe('gitPassword')
+    expect(validationSpy.fieldValue).toBe(customer.git.pass)
   })
 
   test('should call Validation with correct sonarHost', () => {
@@ -230,9 +219,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const sonarHostInput = sut.getByTestId('sonarHost')
     fireEvent.input(sonarHostInput, { target: { value: customer.sonar.host } })
-    expect(validationSpy.input).toEqual({
-      sonarHost: customer.sonar.host
-    })
+    expect(validationSpy.fieldName).toBe('sonarHost')
+    expect(validationSpy.fieldValue).toBe(customer.sonar.host)
   })
 
   test('should call Validation with correct remoteStateName', () => {
@@ -240,9 +228,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const remoteStateNameInput = sut.getByTestId('remoteStateName')
     fireEvent.input(remoteStateNameInput, { target: { value: customer.remoteState[0].name } })
-    expect(validationSpy.input).toEqual({
-      remoteStateName: customer.remoteState[0].name
-    })
+    expect(validationSpy.fieldName).toBe('remoteStateName')
+    expect(validationSpy.fieldValue).toBe(customer.remoteState[0].name)
   })
 
   test('should call Validation with correct remoteStateBusinessUnit', () => {
@@ -250,9 +237,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const remoteStateBusinessUnitInput = sut.getByTestId('remoteStateBusinessUnit')
     fireEvent.input(remoteStateBusinessUnitInput, { target: { value: customer.remoteState[0].businessUnit } })
-    expect(validationSpy.input).toEqual({
-      remoteStateBusinessUnit: customer.remoteState[0].businessUnit
-    })
+    expect(validationSpy.fieldName).toBe('remoteStateBusinessUnit')
+    expect(validationSpy.fieldValue).toBe(customer.remoteState[0].businessUnit)
   })
 
   test('should call Validation with correct remoteStateEnvironment', () => {
@@ -260,9 +246,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const remoteStateEnvironmentInput = sut.getByTestId('remoteStateEnvironment')
     fireEvent.input(remoteStateEnvironmentInput, { target: { value: customer.remoteState[0].environment } })
-    expect(validationSpy.input).toEqual({
-      remoteStateEnvironment: customer.remoteState[0].environment
-    })
+    expect(validationSpy.fieldName).toBe('remoteStateEnvironment')
+    expect(validationSpy.fieldValue).toBe(customer.remoteState[0].environment)
   })
 
   test('should call Validation with correct remoteStateVendor', () => {
@@ -270,9 +255,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const remoteStateVendorInput = sut.getByTestId('remoteStateVendor')
     fireEvent.input(remoteStateVendorInput, { target: { value: customer.remoteState[0].vendor } })
-    expect(validationSpy.input).toEqual({
-      remoteStateVendor: customer.remoteState[0].vendor
-    })
+    expect(validationSpy.fieldName).toBe('remoteStateVendor')
+    expect(validationSpy.fieldValue).toBe(customer.remoteState[0].vendor)
   })
 
   test('should call Validation with correct remoteStateRegion', () => {
@@ -280,9 +264,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const remoteStateRegionInput = sut.getByTestId('remoteStateRegion')
     fireEvent.input(remoteStateRegionInput, { target: { value: customer.remoteState[0].region } })
-    expect(validationSpy.input).toEqual({
-      remoteStateRegion: customer.remoteState[0].region
-    })
+    expect(validationSpy.fieldName).toBe('remoteStateRegion')
+    expect(validationSpy.fieldValue).toBe(customer.remoteState[0].region)
   })
 
   test('should call Validation with correct remoteStateType', () => {
@@ -290,9 +273,8 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const remoteStateTypeInput = sut.getByTestId('remoteStateType')
     fireEvent.input(remoteStateTypeInput, { target: { value: customer.remoteState[0].type } })
-    expect(validationSpy.input).toEqual({
-      remoteStateType: customer.remoteState[0].type
-    })
+    expect(validationSpy.fieldName).toBe('remoteStateType')
+    expect(validationSpy.fieldValue).toBe(customer.remoteState[0].type)
   })
 
   test('should call Validation with correct outputName', () => {
@@ -300,8 +282,7 @@ describe('Name of the group', () => {
     const customer = mockCustomer()
     const outputNameInput = sut.getByTestId('outputName')
     fireEvent.input(outputNameInput, { target: { value: customer.output.name } })
-    expect(validationSpy.input).toEqual({
-      outputName: customer.output.name
-    })
+    expect(validationSpy.fieldName).toBe('outputName')
+    expect(validationSpy.fieldValue).toBe(customer.output.name)
   })
 })

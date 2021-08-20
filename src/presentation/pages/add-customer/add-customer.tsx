@@ -28,6 +28,7 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     gitPassword: '',
     sonarHost: '',
     remoteStateName: '',
+    remoteStateBusinessUnit: '',
     nameError: 'Campo obrigatório',
     templateNameError: 'Campo obrigatório',
     templateTypeError: 'Campo obrigatório',
@@ -90,6 +91,9 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
   useEffect(() => {
     validation.validate({ remoteStateName: state.remoteStateName })
   }, [state.remoteStateName])
+  useEffect(() => {
+    validation.validate({ remoteStateBusinessUnit: state.remoteStateBusinessUnit })
+  }, [state.remoteStateBusinessUnit])
 
   return (
     <div className={Styles.addCustomer}>

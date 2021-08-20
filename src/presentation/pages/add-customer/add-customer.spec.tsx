@@ -264,4 +264,14 @@ describe('Name of the group', () => {
       remoteStateEnvironment: customer.remoteState[0].environment
     })
   })
+
+  test('should call Validation with correct remoteStateVendor', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const remoteStateVendorInput = sut.getByTestId('remoteStateVendor')
+    fireEvent.input(remoteStateVendorInput, { target: { value: customer.remoteState[0].vendor } })
+    expect(validationSpy.input).toEqual({
+      remoteStateVendor: customer.remoteState[0].vendor
+    })
+  })
 })

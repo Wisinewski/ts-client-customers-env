@@ -1,13 +1,15 @@
 import React from 'react'
 import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react'
-import AddCustomer from './add-customer'
-import { mockCustomer } from '@/domain/test/customer/mock-customer'
+import { mockCustomer, mockCustomerParams } from '@/domain/test/customer/mock-customer'
 import { ValidationStub } from '@/presentation/test/mock-validation'
 import faker from 'faker'
+import { AddCustomerSpy } from '@/presentation/test/mock-customer'
+import AddCustomer from './add-customer'
 
 type SutTypes = {
   sut: RenderResult
   validationStub: ValidationStub
+  addCustomerSpy: AddCustomerSpy
 }
 
 type SutParams = {
@@ -17,10 +19,12 @@ type SutParams = {
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   validationStub.errorMessage = params?.validationError
-  const sut = render(<AddCustomer validation={validationStub} />)
+  const addCustomerSpy = new AddCustomerSpy()
+  const sut = render(<AddCustomer validation={validationStub} addCustomer={addCustomerSpy} />)
   return {
     sut,
-    validationStub
+    validationStub,
+    addCustomerSpy
   }
 }
 
@@ -336,7 +340,7 @@ describe('Name of the group', () => {
     expect(templateTypeInputStatus.textContent).toBe('✔️')
   })
 
-  test.skip('should show templateCi error if Validation fails', () => {
+  test('should show templateCi error if Validation fails', () => {
     const { sut } = makeSut()
     const templateCiInput = sut.getByTestId('templateCi')
     fireEvent.click(templateCiInput)
@@ -345,7 +349,7 @@ describe('Name of the group', () => {
     expect(templateCiInputStatus.textContent).toBe('ℹ️')
   })
 
-  test.skip('should show templateCd error if Validation fails', () => {
+  test('should show templateCd error if Validation fails', () => {
     const { sut } = makeSut()
     const templateCdInput = sut.getByTestId('templateCd')
     fireEvent.click(templateCdInput)
@@ -504,8 +508,8 @@ describe('Name of the group', () => {
     fireEvent.input(sut.getByTestId('name'), { target: { value: customer.name } })
     fireEvent.input(sut.getByTestId('templateName'), { target: { value: customer.templates[0].name } })
     fireEvent.input(sut.getByTestId('templateType'), { target: { value: customer.templates[0].type } })
-    fireEvent.input(sut.getByTestId('templateCi'), { target: { value: customer.templates[0].ci } })
-    fireEvent.input(sut.getByTestId('templateCd'), { target: { value: customer.templates[0].cd } })
+    fireEvent.click(sut.getByTestId('templateCi'))
+    fireEvent.click(sut.getByTestId('templateCd'))
     fireEvent.input(sut.getByTestId('templateVendor'), { target: { value: customer.templates[0].vendor } })
     fireEvent.input(sut.getByTestId('templateLang'), { target: { value: customer.templates[0].lang } })
     fireEvent.input(sut.getByTestId('templateVersion'), { target: { value: customer.templates[0].version } })
@@ -532,8 +536,8 @@ describe('Name of the group', () => {
     fireEvent.input(sut.getByTestId('name'), { target: { value: customer.name } })
     fireEvent.input(sut.getByTestId('templateName'), { target: { value: customer.templates[0].name } })
     fireEvent.input(sut.getByTestId('templateType'), { target: { value: customer.templates[0].type } })
-    fireEvent.input(sut.getByTestId('templateCi'), { target: { value: customer.templates[0].ci } })
-    fireEvent.input(sut.getByTestId('templateCd'), { target: { value: customer.templates[0].cd } })
+    fireEvent.click(sut.getByTestId('templateCi'))
+    fireEvent.click(sut.getByTestId('templateCd'))
     fireEvent.input(sut.getByTestId('templateVendor'), { target: { value: customer.templates[0].vendor } })
     fireEvent.input(sut.getByTestId('templateLang'), { target: { value: customer.templates[0].lang } })
     fireEvent.input(sut.getByTestId('templateVersion'), { target: { value: customer.templates[0].version } })
@@ -555,5 +559,44 @@ describe('Name of the group', () => {
     fireEvent.click(createButton)
     const spinner = sut.getByTestId('spinner')
     expect(spinner).toBeTruthy()
+  })
+
+  test('should call AddCustomer with correct values', () => {
+    const { sut, addCustomerSpy } = makeSut()
+    const customer = mockCustomerParams()
+    fireEvent.input(sut.getByTestId('name'), { target: { value: customer.name } })
+    fireEvent.input(sut.getByTestId('templateName'), { target: { value: customer.templates[0].name } })
+    fireEvent.input(sut.getByTestId('templateType'), { target: { value: customer.templates[0].type } })
+    fireEvent.click(sut.getByTestId('templateCi'))
+    fireEvent.click(sut.getByTestId('templateCd'))
+    fireEvent.input(sut.getByTestId('templateVendor'), { target: { value: customer.templates[0].vendor } })
+    fireEvent.input(sut.getByTestId('templateLang'), { target: { value: customer.templates[0].lang } })
+    fireEvent.input(sut.getByTestId('templateVersion'), { target: { value: customer.templates[0].version } })
+    fireEvent.input(sut.getByTestId('templatePath'), { target: { value: customer.templates[0].path } })
+    fireEvent.input(sut.getByTestId('templateTool'), { target: { value: customer.templates[0].tool } })
+    fireEvent.input(sut.getByTestId('gitUser'), { target: { value: customer.git.user } })
+    fireEvent.input(sut.getByTestId('gitPassword'), { target: { value: customer.git.pass } })
+    fireEvent.input(sut.getByTestId('sonarHost'), { target: { value: customer.sonar.host } })
+    fireEvent.input(sut.getByTestId('sonarToken'), { target: { value: customer.sonar.token } })
+    fireEvent.input(sut.getByTestId('remoteStateName'), { target: { value: customer.remoteState[0].name } })
+    fireEvent.input(sut.getByTestId('remoteStateBusinessUnit'), { target: { value: customer.remoteState[0].businessUnit } })
+    fireEvent.input(sut.getByTestId('remoteStateEnvironment'), { target: { value: customer.remoteState[0].environment } })
+    fireEvent.input(sut.getByTestId('remoteStateVendor'), { target: { value: customer.remoteState[0].vendor } })
+    fireEvent.input(sut.getByTestId('remoteStateRegion'), { target: { value: customer.remoteState[0].region } })
+    fireEvent.input(sut.getByTestId('remoteStateType'), { target: { value: customer.remoteState[0].type } })
+    fireEvent.input(sut.getByTestId('outputName'), { target: { value: customer.output.name } })
+    const createButton = sut.getByTestId('createButton') as HTMLButtonElement
+    expect(createButton.disabled).toBe(false)
+    fireEvent.click(createButton)
+    customer.templates[0].ci = true
+    customer.templates[0].cd = true
+    expect(addCustomerSpy.customerParams).toEqual({
+      name: customer.name,
+      templates: [customer.templates[0]],
+      git: customer.git,
+      sonar: customer.sonar,
+      remoteState: [customer.remoteState[0]],
+      output: customer.output
+    })
   })
 })

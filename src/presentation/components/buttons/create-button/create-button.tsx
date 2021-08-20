@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import Styles from './create-button-styles.scss'
 
 type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
@@ -11,4 +11,4 @@ const CreateButton: React.FC<Props> = (props: Props) => {
   )
 }
 
-export default memo(CreateButton)
+export default CreateButton

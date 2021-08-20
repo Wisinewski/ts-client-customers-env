@@ -130,12 +130,20 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
       !!state.outputNameError
   }
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault()
+    setState({
+      ...state,
+      isLoading: true
+    })
+  }
+
   return (
     <div className={Styles.addCustomer}>
       <ModalHeader title="Adicionar cliente" />
 
       <Context.Provider value={{ state, setState }}>
-        <form className={Styles.form}>
+        <form id="add-customer" className={Styles.form} onSubmit={handleSubmit}>
           <Input type="text" name="name" id="name" title="Nome *" />
 
           <section className={Styles.inputArea}>
@@ -203,7 +211,7 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
 
         <footer className={Styles.footer}>
           <FormStatus />
-          <CreateButton disabled={hasValidationError()} />
+          <CreateButton disabled={hasValidationError()} form="add-customer" />
         </footer>
       </Context.Provider>
     </div>

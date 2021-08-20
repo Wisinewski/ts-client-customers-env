@@ -106,6 +106,30 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     state.remoteStateType,
     state.outputName])
 
+  const hasValidationError = (): boolean => {
+    return !!state.nameError ||
+      !!state.templateNameError ||
+      !!state.templateTypeError ||
+      !!state.templateCiError ||
+      !!state.templateCdError ||
+      !!state.templateVendorError ||
+      !!state.templateLangError ||
+      !!state.templateVersionError ||
+      !!state.templatePathError ||
+      !!state.templateToolError ||
+      !!state.gitUserError ||
+      !!state.gitPasswordError ||
+      !!state.sonarHostError ||
+      !!state.sonarTokenError ||
+      !!state.remoteStateNameError ||
+      !!state.remoteStateBusinessUnitError ||
+      !!state.remoteStateEnvironmentError ||
+      !!state.remoteStateVendorError ||
+      !!state.remoteStateRegionError ||
+      !!state.remoteStateTypeError ||
+      !!state.outputNameError
+  }
+
   return (
     <div className={Styles.addCustomer}>
       <ModalHeader title="Adicionar cliente" />
@@ -179,7 +203,7 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
 
         <footer className={Styles.footer}>
           <FormStatus />
-          <CreateButton disabled />
+          <CreateButton disabled={hasValidationError()} />
         </footer>
       </Context.Provider>
     </div>

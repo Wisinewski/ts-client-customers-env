@@ -11,15 +11,22 @@ const Input: React.FC<Props> = (props: Props) => {
     event.target.readOnly = false
   }
   const handleChange = (event: React.FocusEvent<HTMLInputElement>): void => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value
-    })
+    if (props.type === 'checkbox') {
+      setState({
+        ...state,
+        [event.target.name]: !state[props.name]
+      })
+    } else {
+      setState({
+        ...state,
+        [event.target.name]: event.target.value
+      })
+    }
   }
 
   const getStatus = (): string => {
     if (props.type === 'checkbox') return 'ℹ️'
-    if (state[`${props.name}`] === '') return 'ℹ️'
+    if (state[props.name] === '') return 'ℹ️'
     return error ? '❌' : '✔️'
   }
 

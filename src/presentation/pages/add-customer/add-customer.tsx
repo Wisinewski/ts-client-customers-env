@@ -7,19 +7,21 @@ import React, { useEffect, useState } from 'react'
 import Styles from './add-customer-styles.scss'
 import Context from '@/presentation/contexts/form/form-context'
 import { Validation } from '@/presentation/protocols/validation'
+import { AddCustomer as AddCustomerUsecase } from '@/domain/usecases/add-customer'
 
 type Props = {
   validation: Validation
+  addCustomer: AddCustomerUsecase
 }
 
-const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
+const AddCustomer: React.FC<Props> = ({ validation, addCustomer }: Props) => {
   const [state, setState] = useState({
     isLoading: false,
     name: '',
     templateName: '',
     templateType: '',
-    templateCi: 'false',
-    templateCd: 'false',
+    templateCi: false,
+    templateCd: false,
     templateVendor: '',
     templateLang: '',
     templateVersion: '',
@@ -130,11 +132,44 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
       !!state.outputNameError
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     setState({
       ...state,
       isLoading: true
+    })
+    await addCustomer.add({
+      name: state.name,
+      templates: [{
+        name: state.templateName,
+        type: state.templateType,
+        ci: state.templateCi,
+        cd: state.templateCd,
+        vendor: state.templateVendor,
+        lang: state.templateLang,
+        version: state.templateVersion,
+        path: state.templatePath,
+        tool: state.templateTool
+      }],
+      git: {
+        user: state.gitUser,
+        pass: state.gitPassword
+      },
+      sonar: {
+        host: state.sonarHost,
+        token: state.sonarToken
+      },
+      remoteState: [{
+        name: state.remoteStateName,
+        businessUnit: state.remoteStateBusinessUnit,
+        environment: state.remoteStateEnvironment,
+        vendor: state.remoteStateVendor,
+        region: state.remoteStateRegion,
+        type: state.remoteStateType
+      }],
+      output: {
+        name: state.outputName
+      }
     })
   }
 

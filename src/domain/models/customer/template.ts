@@ -2,8 +2,8 @@ export type Template = {
   id: string
   name: string
   type: string
-  ci?: string
-  cd?: string
+  ci?: boolean
+  cd?: boolean
   vendor?: string
   lang: string
   version: string

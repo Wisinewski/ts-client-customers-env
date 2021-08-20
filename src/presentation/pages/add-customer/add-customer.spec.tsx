@@ -274,4 +274,14 @@ describe('Name of the group', () => {
       remoteStateVendor: customer.remoteState[0].vendor
     })
   })
+
+  test('should call Validation with correct remoteStateRegion', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const remoteStateRegionInput = sut.getByTestId('remoteStateRegion')
+    fireEvent.input(remoteStateRegionInput, { target: { value: customer.remoteState[0].region } })
+    expect(validationSpy.input).toEqual({
+      remoteStateRegion: customer.remoteState[0].region
+    })
+  })
 })

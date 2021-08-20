@@ -254,4 +254,14 @@ describe('Name of the group', () => {
       remoteStateBusinessUnit: customer.remoteState[0].businessUnit
     })
   })
+
+  test('should call Validation with correct remoteStateEnvironment', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const remoteStateEnvironmentInput = sut.getByTestId('remoteStateEnvironment')
+    fireEvent.input(remoteStateEnvironmentInput, { target: { value: customer.remoteState[0].environment } })
+    expect(validationSpy.input).toEqual({
+      remoteStateEnvironment: customer.remoteState[0].environment
+    })
+  })
 })

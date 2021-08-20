@@ -24,6 +24,7 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     templateVersion: '',
     templatePath: '',
     templateTool: '',
+    gitUser: '',
     nameError: 'Campo obrigatório',
     templateNameError: 'Campo obrigatório',
     templateTypeError: 'Campo obrigatório',
@@ -74,6 +75,9 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
   useEffect(() => {
     validation.validate({ templateTool: state.templateTool })
   }, [state.templateTool])
+  useEffect(() => {
+    validation.validate({ gitUser: state.gitUser })
+  }, [state.gitUser])
 
   return (
     <div className={Styles.addCustomer}>

@@ -28,6 +28,31 @@ const makeSut = (params?: SutParams): SutTypes => {
   }
 }
 
+const populateForm = (sut: RenderResult): void => {
+  const customer = mockCustomer()
+  fireEvent.input(sut.getByTestId('name'), { target: { value: customer.name } })
+  fireEvent.input(sut.getByTestId('templateName'), { target: { value: customer.templates[0].name } })
+  fireEvent.input(sut.getByTestId('templateType'), { target: { value: customer.templates[0].type } })
+  fireEvent.click(sut.getByTestId('templateCi'))
+  fireEvent.click(sut.getByTestId('templateCd'))
+  fireEvent.input(sut.getByTestId('templateVendor'), { target: { value: customer.templates[0].vendor } })
+  fireEvent.input(sut.getByTestId('templateLang'), { target: { value: customer.templates[0].lang } })
+  fireEvent.input(sut.getByTestId('templateVersion'), { target: { value: customer.templates[0].version } })
+  fireEvent.input(sut.getByTestId('templatePath'), { target: { value: customer.templates[0].path } })
+  fireEvent.input(sut.getByTestId('templateTool'), { target: { value: customer.templates[0].tool } })
+  fireEvent.input(sut.getByTestId('gitUser'), { target: { value: customer.git.user } })
+  fireEvent.input(sut.getByTestId('gitPassword'), { target: { value: customer.git.pass } })
+  fireEvent.input(sut.getByTestId('sonarHost'), { target: { value: customer.sonar.host } })
+  fireEvent.input(sut.getByTestId('sonarToken'), { target: { value: customer.sonar.token } })
+  fireEvent.input(sut.getByTestId('remoteStateName'), { target: { value: customer.remoteState[0].name } })
+  fireEvent.input(sut.getByTestId('remoteStateBusinessUnit'), { target: { value: customer.remoteState[0].businessUnit } })
+  fireEvent.input(sut.getByTestId('remoteStateEnvironment'), { target: { value: customer.remoteState[0].environment } })
+  fireEvent.input(sut.getByTestId('remoteStateVendor'), { target: { value: customer.remoteState[0].vendor } })
+  fireEvent.input(sut.getByTestId('remoteStateRegion'), { target: { value: customer.remoteState[0].region } })
+  fireEvent.input(sut.getByTestId('remoteStateType'), { target: { value: customer.remoteState[0].type } })
+  fireEvent.input(sut.getByTestId('outputName'), { target: { value: customer.output.name } })
+}
+
 describe('Name of the group', () => {
   afterEach(cleanup)
 
@@ -504,56 +529,14 @@ describe('Name of the group', () => {
 
   test('should enable create button if form is valid', () => {
     const { sut } = makeSut()
-    const customer = mockCustomer()
-    fireEvent.input(sut.getByTestId('name'), { target: { value: customer.name } })
-    fireEvent.input(sut.getByTestId('templateName'), { target: { value: customer.templates[0].name } })
-    fireEvent.input(sut.getByTestId('templateType'), { target: { value: customer.templates[0].type } })
-    fireEvent.click(sut.getByTestId('templateCi'))
-    fireEvent.click(sut.getByTestId('templateCd'))
-    fireEvent.input(sut.getByTestId('templateVendor'), { target: { value: customer.templates[0].vendor } })
-    fireEvent.input(sut.getByTestId('templateLang'), { target: { value: customer.templates[0].lang } })
-    fireEvent.input(sut.getByTestId('templateVersion'), { target: { value: customer.templates[0].version } })
-    fireEvent.input(sut.getByTestId('templatePath'), { target: { value: customer.templates[0].path } })
-    fireEvent.input(sut.getByTestId('templateTool'), { target: { value: customer.templates[0].tool } })
-    fireEvent.input(sut.getByTestId('gitUser'), { target: { value: customer.git.user } })
-    fireEvent.input(sut.getByTestId('gitPassword'), { target: { value: customer.git.pass } })
-    fireEvent.input(sut.getByTestId('sonarHost'), { target: { value: customer.sonar.host } })
-    fireEvent.input(sut.getByTestId('sonarToken'), { target: { value: customer.sonar.token } })
-    fireEvent.input(sut.getByTestId('remoteStateName'), { target: { value: customer.remoteState[0].name } })
-    fireEvent.input(sut.getByTestId('remoteStateBusinessUnit'), { target: { value: customer.remoteState[0].businessUnit } })
-    fireEvent.input(sut.getByTestId('remoteStateEnvironment'), { target: { value: customer.remoteState[0].environment } })
-    fireEvent.input(sut.getByTestId('remoteStateVendor'), { target: { value: customer.remoteState[0].vendor } })
-    fireEvent.input(sut.getByTestId('remoteStateRegion'), { target: { value: customer.remoteState[0].region } })
-    fireEvent.input(sut.getByTestId('remoteStateType'), { target: { value: customer.remoteState[0].type } })
-    fireEvent.input(sut.getByTestId('outputName'), { target: { value: customer.output.name } })
+    populateForm(sut)
     const createButton = sut.getByTestId('createButton') as HTMLButtonElement
     expect(createButton.disabled).toBe(false)
   })
 
   test('should show spinner on submit', () => {
     const { sut } = makeSut()
-    const customer = mockCustomer()
-    fireEvent.input(sut.getByTestId('name'), { target: { value: customer.name } })
-    fireEvent.input(sut.getByTestId('templateName'), { target: { value: customer.templates[0].name } })
-    fireEvent.input(sut.getByTestId('templateType'), { target: { value: customer.templates[0].type } })
-    fireEvent.click(sut.getByTestId('templateCi'))
-    fireEvent.click(sut.getByTestId('templateCd'))
-    fireEvent.input(sut.getByTestId('templateVendor'), { target: { value: customer.templates[0].vendor } })
-    fireEvent.input(sut.getByTestId('templateLang'), { target: { value: customer.templates[0].lang } })
-    fireEvent.input(sut.getByTestId('templateVersion'), { target: { value: customer.templates[0].version } })
-    fireEvent.input(sut.getByTestId('templatePath'), { target: { value: customer.templates[0].path } })
-    fireEvent.input(sut.getByTestId('templateTool'), { target: { value: customer.templates[0].tool } })
-    fireEvent.input(sut.getByTestId('gitUser'), { target: { value: customer.git.user } })
-    fireEvent.input(sut.getByTestId('gitPassword'), { target: { value: customer.git.pass } })
-    fireEvent.input(sut.getByTestId('sonarHost'), { target: { value: customer.sonar.host } })
-    fireEvent.input(sut.getByTestId('sonarToken'), { target: { value: customer.sonar.token } })
-    fireEvent.input(sut.getByTestId('remoteStateName'), { target: { value: customer.remoteState[0].name } })
-    fireEvent.input(sut.getByTestId('remoteStateBusinessUnit'), { target: { value: customer.remoteState[0].businessUnit } })
-    fireEvent.input(sut.getByTestId('remoteStateEnvironment'), { target: { value: customer.remoteState[0].environment } })
-    fireEvent.input(sut.getByTestId('remoteStateVendor'), { target: { value: customer.remoteState[0].vendor } })
-    fireEvent.input(sut.getByTestId('remoteStateRegion'), { target: { value: customer.remoteState[0].region } })
-    fireEvent.input(sut.getByTestId('remoteStateType'), { target: { value: customer.remoteState[0].type } })
-    fireEvent.input(sut.getByTestId('outputName'), { target: { value: customer.output.name } })
+    populateForm(sut)
     const createButton = sut.getByTestId('createButton') as HTMLButtonElement
     expect(createButton.disabled).toBe(false)
     fireEvent.click(createButton)
@@ -598,5 +581,15 @@ describe('Name of the group', () => {
       remoteState: [customer.remoteState[0]],
       output: customer.output
     })
+  })
+
+  test('should call AddCustomer only once', () => {
+    const { sut, addCustomerSpy } = makeSut()
+    populateForm(sut)
+    const createButton = sut.getByTestId('createButton') as HTMLButtonElement
+    expect(createButton.disabled).toBe(false)
+    fireEvent.click(createButton)
+    fireEvent.click(createButton)
+    expect(addCustomerSpy.callsCount).toEqual(1)
   })
 })

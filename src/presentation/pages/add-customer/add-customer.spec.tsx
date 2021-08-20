@@ -10,9 +10,13 @@ type SutTypes = {
   validationStub: ValidationStub
 }
 
-const makeSut = (): SutTypes => {
+type SutParams = {
+  validationError: string
+}
+
+const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
-  validationStub.errorMessage = faker.random.words()
+  validationStub.errorMessage = params?.validationError
   const sut = render(<AddCustomer validation={validationStub} />)
   return {
     sut,
@@ -24,7 +28,8 @@ describe('Name of the group', () => {
   afterEach(cleanup)
 
   test('should start with initial state', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const errorWrap = sut.getByTestId('error-wrap')
     expect(errorWrap.childElementCount).toBe(0)
     const createButton = sut.getByTestId('createButton') as HTMLButtonElement
@@ -95,7 +100,8 @@ describe('Name of the group', () => {
   })
 
   test('should show name error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const nameInput = sut.getByTestId('name')
     fireEvent.input(nameInput, { target: { value: mockCustomer().name } })
     const nameStatus = sut.getByTestId('name-status')
@@ -104,7 +110,8 @@ describe('Name of the group', () => {
   })
 
   test('should show templateName error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const templateNameInput = sut.getByTestId('templateName')
     fireEvent.input(templateNameInput, { target: { value: mockCustomer().templates[0].name } })
     const templateNameInputStatus = sut.getByTestId('templateName-status')
@@ -113,7 +120,8 @@ describe('Name of the group', () => {
   })
 
   test('should show templateType error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const templateTypeInput = sut.getByTestId('templateType')
     fireEvent.input(templateTypeInput, { target: { value: mockCustomer().templates[0].type } })
     const templateTypeInputStatus = sut.getByTestId('templateType-status')
@@ -122,7 +130,8 @@ describe('Name of the group', () => {
   })
 
   test('should show templateCi error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const templateCiInput = sut.getByTestId('templateCi')
     fireEvent.click(templateCiInput)
     const templateCiInputStatus = sut.getByTestId('templateCi-status')
@@ -131,7 +140,8 @@ describe('Name of the group', () => {
   })
 
   test('should show templateCd error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const templateCdInput = sut.getByTestId('templateCd')
     fireEvent.click(templateCdInput)
     const templateCdInputStatus = sut.getByTestId('templateCd-status')
@@ -140,7 +150,8 @@ describe('Name of the group', () => {
   })
 
   test('should show templateVendor error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const templateVendorInput = sut.getByTestId('templateVendor')
     fireEvent.input(templateVendorInput, { target: { value: mockCustomer().templates[0].vendor } })
     const templateVendorInputStatus = sut.getByTestId('templateVendor-status')
@@ -149,7 +160,8 @@ describe('Name of the group', () => {
   })
 
   test('should show templateLang error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const templateLangInput = sut.getByTestId('templateLang')
     fireEvent.input(templateLangInput, { target: { value: mockCustomer().templates[0].lang } })
     const templateLangInputStatus = sut.getByTestId('templateLang-status')
@@ -158,7 +170,8 @@ describe('Name of the group', () => {
   })
 
   test('should show templateVersion error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const templateVersionInput = sut.getByTestId('templateVersion')
     fireEvent.input(templateVersionInput, { target: { value: mockCustomer().templates[0].version } })
     const templateVersionInputStatus = sut.getByTestId('templateVersion-status')
@@ -167,7 +180,8 @@ describe('Name of the group', () => {
   })
 
   test('should show templatePath error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const templatePathInput = sut.getByTestId('templatePath')
     fireEvent.input(templatePathInput, { target: { value: mockCustomer().templates[0].path } })
     const templatePathInputStatus = sut.getByTestId('templatePath-status')
@@ -176,7 +190,8 @@ describe('Name of the group', () => {
   })
 
   test('should show templateTool error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const templateToolInput = sut.getByTestId('templateTool')
     fireEvent.input(templateToolInput, { target: { value: mockCustomer().templates[0].tool } })
     const templateToolInputStatus = sut.getByTestId('templateTool-status')
@@ -185,7 +200,8 @@ describe('Name of the group', () => {
   })
 
   test('should show gitUser error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const gitUserInput = sut.getByTestId('gitUser')
     fireEvent.input(gitUserInput, { target: { value: mockCustomer().git.user } })
     const gitUserInputStatus = sut.getByTestId('gitUser-status')
@@ -194,7 +210,8 @@ describe('Name of the group', () => {
   })
 
   test('should show gitPassword error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const gitPasswordInput = sut.getByTestId('gitPassword')
     fireEvent.input(gitPasswordInput, { target: { value: mockCustomer().git.pass } })
     const gitPasswordInputStatus = sut.getByTestId('gitPassword-status')
@@ -203,7 +220,8 @@ describe('Name of the group', () => {
   })
 
   test('should show sonarHost error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const sonarHostInput = sut.getByTestId('sonarHost')
     fireEvent.input(sonarHostInput, { target: { value: mockCustomer().sonar.host } })
     const sonarHostInputStatus = sut.getByTestId('sonarHost-status')
@@ -212,7 +230,8 @@ describe('Name of the group', () => {
   })
 
   test('should show sonarToken error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const sonarTokenInput = sut.getByTestId('sonarToken')
     fireEvent.input(sonarTokenInput, { target: { value: mockCustomer().sonar.token } })
     const sonarTokenInputStatus = sut.getByTestId('sonarToken-status')
@@ -221,7 +240,8 @@ describe('Name of the group', () => {
   })
 
   test('should show remoteStateName error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const remoteStateNameInput = sut.getByTestId('remoteStateName')
     fireEvent.input(remoteStateNameInput, { target: { value: mockCustomer().remoteState[0].name } })
     const remoteStateNameInputStatus = sut.getByTestId('remoteStateName-status')
@@ -230,7 +250,8 @@ describe('Name of the group', () => {
   })
 
   test('should show remoteStateBusinessUnit error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const remoteStateBusinessUnitInput = sut.getByTestId('remoteStateBusinessUnit')
     fireEvent.input(remoteStateBusinessUnitInput, { target: { value: mockCustomer().remoteState[0].businessUnit } })
     const remoteStateBusinessUnitInputStatus = sut.getByTestId('remoteStateBusinessUnit-status')
@@ -239,7 +260,8 @@ describe('Name of the group', () => {
   })
 
   test('should show remoteStateEnvironment error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const remoteStateEnvironmentInput = sut.getByTestId('remoteStateEnvironment')
     fireEvent.input(remoteStateEnvironmentInput, { target: { value: mockCustomer().remoteState[0].environment } })
     const remoteStateEnvironmentInputStatus = sut.getByTestId('remoteStateEnvironment-status')
@@ -248,7 +270,8 @@ describe('Name of the group', () => {
   })
 
   test('should show remoteStateVendor error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const remoteStateVendorInput = sut.getByTestId('remoteStateVendor')
     fireEvent.input(remoteStateVendorInput, { target: { value: mockCustomer().remoteState[0].vendor } })
     const remoteStateVendorInputStatus = sut.getByTestId('remoteStateVendor-status')
@@ -257,7 +280,8 @@ describe('Name of the group', () => {
   })
 
   test('should show remoteStateRegion error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const remoteStateRegionInput = sut.getByTestId('remoteStateRegion')
     fireEvent.input(remoteStateRegionInput, { target: { value: mockCustomer().remoteState[0].region } })
     const remoteStateRegionInputStatus = sut.getByTestId('remoteStateRegion-status')
@@ -266,7 +290,8 @@ describe('Name of the group', () => {
   })
 
   test('should show remoteStateType error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const remoteStateTypeInput = sut.getByTestId('remoteStateType')
     fireEvent.input(remoteStateTypeInput, { target: { value: mockCustomer().remoteState[0].type } })
     const remoteStateTypeInputStatus = sut.getByTestId('remoteStateType-status')
@@ -275,7 +300,8 @@ describe('Name of the group', () => {
   })
 
   test('should show outputName error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut, validationStub } = makeSut({ validationError })
     const outputNameInput = sut.getByTestId('outputName')
     fireEvent.input(outputNameInput, { target: { value: mockCustomer().output.name } })
     const outputNameInputStatus = sut.getByTestId('outputName-status')
@@ -284,8 +310,7 @@ describe('Name of the group', () => {
   })
 
   test('should show valid name state if Validation succeeds', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const nameInput = sut.getByTestId('name')
     fireEvent.input(nameInput, { target: { value: mockCustomer().name } })
     const nameInputStatus = sut.getByTestId('name-status')
@@ -294,8 +319,7 @@ describe('Name of the group', () => {
   })
 
   test('should show templateName error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const templateNameInput = sut.getByTestId('templateName')
     fireEvent.input(templateNameInput, { target: { value: mockCustomer().templates[0].name } })
     const templateNameInputStatus = sut.getByTestId('templateName-status')
@@ -304,8 +328,7 @@ describe('Name of the group', () => {
   })
 
   test('should show templateType error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const templateTypeInput = sut.getByTestId('templateType')
     fireEvent.input(templateTypeInput, { target: { value: mockCustomer().templates[0].type } })
     const templateTypeInputStatus = sut.getByTestId('templateType-status')
@@ -314,8 +337,7 @@ describe('Name of the group', () => {
   })
 
   test.skip('should show templateCi error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const templateCiInput = sut.getByTestId('templateCi')
     fireEvent.click(templateCiInput)
     const templateCiInputStatus = sut.getByTestId('templateCi-status')
@@ -324,8 +346,7 @@ describe('Name of the group', () => {
   })
 
   test.skip('should show templateCd error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const templateCdInput = sut.getByTestId('templateCd')
     fireEvent.click(templateCdInput)
     const templateCdInputStatus = sut.getByTestId('templateCd-status')
@@ -334,8 +355,7 @@ describe('Name of the group', () => {
   })
 
   test('should show templateVendor error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const templateVendorInput = sut.getByTestId('templateVendor')
     fireEvent.input(templateVendorInput, { target: { value: mockCustomer().templates[0].vendor } })
     const templateVendorInputStatus = sut.getByTestId('templateVendor-status')
@@ -344,8 +364,7 @@ describe('Name of the group', () => {
   })
 
   test('should show templateLang error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const templateLangInput = sut.getByTestId('templateLang')
     fireEvent.input(templateLangInput, { target: { value: mockCustomer().templates[0].lang } })
     const templateLangInputStatus = sut.getByTestId('templateLang-status')
@@ -354,8 +373,7 @@ describe('Name of the group', () => {
   })
 
   test('should show templateVersion error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const templateVersionInput = sut.getByTestId('templateVersion')
     fireEvent.input(templateVersionInput, { target: { value: mockCustomer().templates[0].version } })
     const templateVersionInputStatus = sut.getByTestId('templateVersion-status')
@@ -364,8 +382,7 @@ describe('Name of the group', () => {
   })
 
   test('should show templatePath error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const templatePathInput = sut.getByTestId('templatePath')
     fireEvent.input(templatePathInput, { target: { value: mockCustomer().templates[0].path } })
     const templatePathInputStatus = sut.getByTestId('templatePath-status')
@@ -374,8 +391,7 @@ describe('Name of the group', () => {
   })
 
   test('should show templateTool error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const templateToolInput = sut.getByTestId('templateTool')
     fireEvent.input(templateToolInput, { target: { value: mockCustomer().templates[0].tool } })
     const templateToolInputStatus = sut.getByTestId('templateTool-status')
@@ -384,8 +400,7 @@ describe('Name of the group', () => {
   })
 
   test('should show gitUser error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const gitUserInput = sut.getByTestId('gitUser')
     fireEvent.input(gitUserInput, { target: { value: mockCustomer().git.user } })
     const gitUserInputStatus = sut.getByTestId('gitUser-status')
@@ -394,8 +409,7 @@ describe('Name of the group', () => {
   })
 
   test('should show gitPassword error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const gitPasswordInput = sut.getByTestId('gitPassword')
     fireEvent.input(gitPasswordInput, { target: { value: mockCustomer().git.pass } })
     const gitPasswordInputStatus = sut.getByTestId('gitPassword-status')
@@ -404,8 +418,7 @@ describe('Name of the group', () => {
   })
 
   test('should show sonarHost error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const sonarHostInput = sut.getByTestId('sonarHost')
     fireEvent.input(sonarHostInput, { target: { value: mockCustomer().sonar.host } })
     const sonarHostInputStatus = sut.getByTestId('sonarHost-status')
@@ -414,8 +427,7 @@ describe('Name of the group', () => {
   })
 
   test('should show sonarToken error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const sonarTokenInput = sut.getByTestId('sonarToken')
     fireEvent.input(sonarTokenInput, { target: { value: mockCustomer().sonar.token } })
     const sonarTokenInputStatus = sut.getByTestId('sonarToken-status')
@@ -424,8 +436,7 @@ describe('Name of the group', () => {
   })
 
   test('should show remoteStateName error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const remoteStateNameInput = sut.getByTestId('remoteStateName')
     fireEvent.input(remoteStateNameInput, { target: { value: mockCustomer().remoteState[0].name } })
     const remoteStateNameInputStatus = sut.getByTestId('remoteStateName-status')
@@ -434,8 +445,7 @@ describe('Name of the group', () => {
   })
 
   test('should show remoteStateBusinessUnit error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const remoteStateBusinessUnitInput = sut.getByTestId('remoteStateBusinessUnit')
     fireEvent.input(remoteStateBusinessUnitInput, { target: { value: mockCustomer().remoteState[0].businessUnit } })
     const remoteStateBusinessUnitInputStatus = sut.getByTestId('remoteStateBusinessUnit-status')
@@ -444,8 +454,7 @@ describe('Name of the group', () => {
   })
 
   test('should show remoteStateEnvironment error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const remoteStateEnvironmentInput = sut.getByTestId('remoteStateEnvironment')
     fireEvent.input(remoteStateEnvironmentInput, { target: { value: mockCustomer().remoteState[0].environment } })
     const remoteStateEnvironmentInputStatus = sut.getByTestId('remoteStateEnvironment-status')
@@ -454,8 +463,7 @@ describe('Name of the group', () => {
   })
 
   test('should show remoteStateVendor error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const remoteStateVendorInput = sut.getByTestId('remoteStateVendor')
     fireEvent.input(remoteStateVendorInput, { target: { value: mockCustomer().remoteState[0].vendor } })
     const remoteStateVendorInputStatus = sut.getByTestId('remoteStateVendor-status')
@@ -464,8 +472,7 @@ describe('Name of the group', () => {
   })
 
   test('should show remoteStateRegion error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const remoteStateRegionInput = sut.getByTestId('remoteStateRegion')
     fireEvent.input(remoteStateRegionInput, { target: { value: mockCustomer().remoteState[0].region } })
     const remoteStateRegionInputStatus = sut.getByTestId('remoteStateRegion-status')
@@ -474,8 +481,7 @@ describe('Name of the group', () => {
   })
 
   test('should show remoteStateType error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const remoteStateTypeInput = sut.getByTestId('remoteStateType')
     fireEvent.input(remoteStateTypeInput, { target: { value: mockCustomer().remoteState[0].type } })
     const remoteStateTypeInputStatus = sut.getByTestId('remoteStateType-status')
@@ -484,8 +490,7 @@ describe('Name of the group', () => {
   })
 
   test('should show outputName error if Validation fails', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const outputNameInput = sut.getByTestId('outputName')
     fireEvent.input(outputNameInput, { target: { value: mockCustomer().output.name } })
     const outputNameInputStatus = sut.getByTestId('outputName-status')
@@ -494,8 +499,7 @@ describe('Name of the group', () => {
   })
 
   test('should enable create button if form is valid', () => {
-    const { sut, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut } = makeSut()
     const customer = mockCustomer()
     fireEvent.input(sut.getByTestId('name'), { target: { value: customer.name } })
     fireEvent.input(sut.getByTestId('templateName'), { target: { value: customer.templates[0].name } })

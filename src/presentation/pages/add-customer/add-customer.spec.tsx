@@ -284,4 +284,14 @@ describe('Name of the group', () => {
       remoteStateRegion: customer.remoteState[0].region
     })
   })
+
+  test('should call Validation with correct remoteStateType', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const remoteStateTypeInput = sut.getByTestId('remoteStateType')
+    fireEvent.input(remoteStateTypeInput, { target: { value: customer.remoteState[0].type } })
+    expect(validationSpy.input).toEqual({
+      remoteStateType: customer.remoteState[0].type
+    })
+  })
 })

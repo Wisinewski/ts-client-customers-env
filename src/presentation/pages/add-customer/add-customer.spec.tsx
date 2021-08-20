@@ -592,4 +592,11 @@ describe('Name of the group', () => {
     fireEvent.click(createButton)
     expect(addCustomerSpy.callsCount).toEqual(1)
   })
+
+  test('should not call AddCustomer if form is invalid', () => {
+    const validationError = faker.random.words()
+    const { sut, addCustomerSpy } = makeSut({ validationError })
+    fireEvent.submit(sut.getByTestId('form'))
+    expect(addCustomerSpy.callsCount).toEqual(0)
+  })
 })

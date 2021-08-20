@@ -31,6 +31,7 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     remoteStateBusinessUnit: '',
     remoteStateEnvironment: '',
     remoteStateVendor: '',
+    remoteStateRegion: '',
     nameError: 'Campo obrigatório',
     templateNameError: 'Campo obrigatório',
     templateTypeError: 'Campo obrigatório',
@@ -102,6 +103,9 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
   useEffect(() => {
     validation.validate({ remoteStateVendor: state.remoteStateVendor })
   }, [state.remoteStateVendor])
+  useEffect(() => {
+    validation.validate({ remoteStateRegion: state.remoteStateRegion })
+  }, [state.remoteStateRegion])
 
   return (
     <div className={Styles.addCustomer}>

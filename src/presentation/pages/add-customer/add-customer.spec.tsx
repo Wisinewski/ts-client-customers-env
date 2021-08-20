@@ -184,4 +184,24 @@ describe('Name of the group', () => {
       templateVersion: customer.templates[0].version
     })
   })
+
+  test('should call Validation with correct templatePath', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const templatePathInput = sut.getByTestId('templatePath')
+    fireEvent.input(templatePathInput, { target: { value: customer.templates[0].path } })
+    expect(validationSpy.input).toEqual({
+      templatePath: customer.templates[0].path
+    })
+  })
+
+  test('should call Validation with correct templateTool', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const templateToolInput = sut.getByTestId('templateTool')
+    fireEvent.input(templateToolInput, { target: { value: customer.templates[0].tool } })
+    expect(validationSpy.input).toEqual({
+      templateTool: customer.templates[0].tool
+    })
+  })
 })

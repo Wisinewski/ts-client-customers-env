@@ -1,10 +1,11 @@
 import React from 'react'
-import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react'
+import { cleanup, fireEvent, render, RenderResult, waitFor } from '@testing-library/react'
 import { mockCustomer, mockCustomerParams } from '@/domain/test/customer/mock-customer'
 import { ValidationStub } from '@/presentation/test/mock-validation'
 import faker from 'faker'
 import { AddCustomerSpy } from '@/presentation/test/mock-customer'
 import AddCustomer from './add-customer'
+import { UnexpectedError } from '@/domain/errors/unexpected-error'
 
 type SutTypes = {
   sut: RenderResult
@@ -598,5 +599,20 @@ describe('Name of the group', () => {
     const { sut, addCustomerSpy } = makeSut({ validationError })
     fireEvent.submit(sut.getByTestId('form'))
     expect(addCustomerSpy.callsCount).toEqual(0)
+  })
+
+  test('should present error if AddCustomer fails', async () => {
+    const { sut, addCustomerSpy } = makeSut()
+    const error = new UnexpectedError()
+    jest.spyOn(addCustomerSpy, 'add').mockReturnValueOnce(Promise.reject(error))
+    populateForm(sut)
+    const createButton = sut.getByTestId('createButton') as HTMLButtonElement
+    expect(createButton.disabled).toBe(false)
+    fireEvent.click(createButton)
+    const errorWrap = sut.getByTestId('error-wrap')
+    await waitFor(() => errorWrap)
+    const mainError = sut.getByTestId('main-error')
+    expect(mainError.textContent).toBe(error.message)
+    expect(errorWrap.childElementCount).toBe(1)
   })
 })

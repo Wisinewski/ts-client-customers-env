@@ -214,4 +214,14 @@ describe('Name of the group', () => {
       gitUser: customer.git.user
     })
   })
+
+  test('should call Validation with correct gitPassword', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const gitPasswordInput = sut.getByTestId('gitPassword')
+    fireEvent.input(gitPasswordInput, { target: { value: customer.git.pass } })
+    expect(validationSpy.input).toEqual({
+      gitPassword: customer.git.pass
+    })
+  })
 })

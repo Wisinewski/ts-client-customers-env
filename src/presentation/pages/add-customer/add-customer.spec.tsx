@@ -131,16 +131,6 @@ describe('Name of the group', () => {
     })
   })
 
-  test('should call Validation with correct templateType', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const templateTypeInput = sut.getByTestId('templateType')
-    fireEvent.input(templateTypeInput, { target: { value: customer.templates[0].type } })
-    expect(validationSpy.input).toEqual({
-      templateType: customer.templates[0].type
-    })
-  })
-
   test.skip('should call Validation with "on" if templateCi is marked', () => {
     const { sut, validationSpy } = makeSut()
     const templateCiInput = sut.getByTestId('templateCi')
@@ -172,6 +162,16 @@ describe('Name of the group', () => {
     sut.getByTestId('templateCi')
     expect(validationSpy.input).toEqual({
       templateCi: false
+    })
+  })
+
+  test('should call Validation with correct templateLang', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const templateLangInput = sut.getByTestId('templateLang')
+    fireEvent.input(templateLangInput, { target: { value: customer.templates[0].lang } })
+    expect(validationSpy.input).toEqual({
+      templateLang: customer.templates[0].lang
     })
   })
 })

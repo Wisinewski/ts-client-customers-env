@@ -174,4 +174,14 @@ describe('Name of the group', () => {
       templateLang: customer.templates[0].lang
     })
   })
+
+  test('should call Validation with correct templateVersion', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const templateVersionInput = sut.getByTestId('templateVersion')
+    fireEvent.input(templateVersionInput, { target: { value: customer.templates[0].version } })
+    expect(validationSpy.input).toEqual({
+      templateVersion: customer.templates[0].version
+    })
+  })
 })

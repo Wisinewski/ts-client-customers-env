@@ -234,4 +234,14 @@ describe('Name of the group', () => {
       sonarHost: customer.sonar.host
     })
   })
+
+  test('should call Validation with correct remoteStateName', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const remoteStateNameInput = sut.getByTestId('remoteStateName')
+    fireEvent.input(remoteStateNameInput, { target: { value: customer.remoteState[0].name } })
+    expect(validationSpy.input).toEqual({
+      remoteStateName: customer.remoteState[0].name
+    })
+  })
 })

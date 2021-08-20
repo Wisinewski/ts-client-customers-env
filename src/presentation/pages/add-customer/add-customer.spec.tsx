@@ -224,4 +224,14 @@ describe('Name of the group', () => {
       gitPassword: customer.git.pass
     })
   })
+
+  test('should call Validation with correct sonarHost', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const sonarHostInput = sut.getByTestId('sonarHost')
+    fireEvent.input(sonarHostInput, { target: { value: customer.sonar.host } })
+    expect(validationSpy.input).toEqual({
+      sonarHost: customer.sonar.host
+    })
+  })
 })

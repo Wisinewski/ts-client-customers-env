@@ -204,4 +204,14 @@ describe('Name of the group', () => {
       templateTool: customer.templates[0].tool
     })
   })
+
+  test('should call Validation with correct gitUser', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const gitUserInput = sut.getByTestId('gitUser')
+    fireEvent.input(gitUserInput, { target: { value: customer.git.user } })
+    expect(validationSpy.input).toEqual({
+      gitUser: customer.git.user
+    })
+  })
 })

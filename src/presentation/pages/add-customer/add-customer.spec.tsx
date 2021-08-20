@@ -294,4 +294,14 @@ describe('Name of the group', () => {
       remoteStateType: customer.remoteState[0].type
     })
   })
+
+  test('should call Validation with correct outputName', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const outputNameInput = sut.getByTestId('outputName')
+    fireEvent.input(outputNameInput, { target: { value: customer.output.name } })
+    expect(validationSpy.input).toEqual({
+      outputName: customer.output.name
+    })
+  })
 })

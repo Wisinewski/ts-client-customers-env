@@ -134,46 +134,54 @@ const AddCustomer: React.FC<Props> = ({ validation, addCustomer }: Props) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
-    if (state.isLoading || hasValidationError()) {
-      return
-    }
-    setState({
-      ...state,
-      isLoading: true
-    })
-    await addCustomer.add({
-      name: state.name,
-      templates: [{
-        name: state.templateName,
-        type: state.templateType,
-        ci: state.templateCi,
-        cd: state.templateCd,
-        vendor: state.templateVendor,
-        lang: state.templateLang,
-        version: state.templateVersion,
-        path: state.templatePath,
-        tool: state.templateTool
-      }],
-      git: {
-        user: state.gitUser,
-        pass: state.gitPassword
-      },
-      sonar: {
-        host: state.sonarHost,
-        token: state.sonarToken
-      },
-      remoteState: [{
-        name: state.remoteStateName,
-        businessUnit: state.remoteStateBusinessUnit,
-        environment: state.remoteStateEnvironment,
-        vendor: state.remoteStateVendor,
-        region: state.remoteStateRegion,
-        type: state.remoteStateType
-      }],
-      output: {
-        name: state.outputName
+    try {
+      if (state.isLoading || hasValidationError()) {
+        return
       }
-    })
+      setState({
+        ...state,
+        isLoading: true
+      })
+      await addCustomer.add({
+        name: state.name,
+        templates: [{
+          name: state.templateName,
+          type: state.templateType,
+          ci: state.templateCi,
+          cd: state.templateCd,
+          vendor: state.templateVendor,
+          lang: state.templateLang,
+          version: state.templateVersion,
+          path: state.templatePath,
+          tool: state.templateTool
+        }],
+        git: {
+          user: state.gitUser,
+          pass: state.gitPassword
+        },
+        sonar: {
+          host: state.sonarHost,
+          token: state.sonarToken
+        },
+        remoteState: [{
+          name: state.remoteStateName,
+          businessUnit: state.remoteStateBusinessUnit,
+          environment: state.remoteStateEnvironment,
+          vendor: state.remoteStateVendor,
+          region: state.remoteStateRegion,
+          type: state.remoteStateType
+        }],
+        output: {
+          name: state.outputName
+        }
+      })
+    } catch (error) {
+      setState({
+        ...state,
+        isLoading: false,
+        mainError: error.message
+      })
+    }
   }
 
   return (

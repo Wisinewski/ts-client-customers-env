@@ -2,21 +2,21 @@ import React from 'react'
 import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react'
 import AddCustomer from './add-customer'
 import { mockCustomer } from '@/domain/test/customer/mock-customer'
-import { ValidationSpy } from '@/presentation/test/mock-validation'
+import { ValidationStub } from '@/presentation/test/mock-validation'
 import faker from 'faker'
 
 type SutTypes = {
   sut: RenderResult
-  validationSpy: ValidationSpy
+  validationStub: ValidationStub
 }
 
 const makeSut = (): SutTypes => {
-  const validationSpy = new ValidationSpy()
-  validationSpy.errorMessage = faker.random.words()
-  const sut = render(<AddCustomer validation={validationSpy} />)
+  const validationStub = new ValidationStub()
+  validationStub.errorMessage = faker.random.words()
+  const sut = render(<AddCustomer validation={validationStub} />)
   return {
     sut,
-    validationSpy
+    validationStub
   }
 }
 
@@ -24,274 +24,271 @@ describe('Name of the group', () => {
   afterEach(cleanup)
 
   test('should start with initial state', () => {
-    const { sut, validationSpy } = makeSut()
+    const { sut, validationStub } = makeSut()
     const errorWrap = sut.getByTestId('error-wrap')
     expect(errorWrap.childElementCount).toBe(0)
     const createButton = sut.getByTestId('createButton') as HTMLButtonElement
     expect(createButton.disabled).toBe(true)
     const nameStatus = sut.getByTestId('name-status')
-    expect(nameStatus.title).toBe(validationSpy.errorMessage)
+    expect(nameStatus.title).toBe(validationStub.errorMessage)
     expect(nameStatus.textContent).toBe('ℹ️')
     const templateNameStatus = sut.getByTestId('templateName-status')
-    expect(templateNameStatus.title).toBe('Campo obrigatório')
+    expect(templateNameStatus.title).toBe(validationStub.errorMessage)
     expect(templateNameStatus.textContent).toBe('ℹ️')
     const templateTypeStatus = sut.getByTestId('templateType-status')
-    expect(templateTypeStatus.title).toBe('Campo obrigatório')
+    expect(templateTypeStatus.title).toBe(validationStub.errorMessage)
     expect(templateTypeStatus.textContent).toBe('ℹ️')
     const templateCiStatus = sut.getByTestId('templateCi-status')
-    expect(templateCiStatus.title).toBe('Campo opcional')
+    expect(templateCiStatus.title).toBe(validationStub.errorMessage)
     expect(templateCiStatus.textContent).toBe('ℹ️')
     const templateCdStatus = sut.getByTestId('templateCd-status')
-    expect(templateCdStatus.title).toBe('Campo opcional')
+    expect(templateCdStatus.title).toBe(validationStub.errorMessage)
     expect(templateCdStatus.textContent).toBe('ℹ️')
     const templateVendorStatus = sut.getByTestId('templateVendor-status')
-    expect(templateVendorStatus.title).toBe('Campo opcional')
+    expect(templateVendorStatus.title).toBe(validationStub.errorMessage)
     expect(templateVendorStatus.textContent).toBe('ℹ️')
     const templateLangStatus = sut.getByTestId('templateLang-status')
-    expect(templateLangStatus.title).toBe('Campo obrigatório')
+    expect(templateLangStatus.title).toBe(validationStub.errorMessage)
     expect(templateLangStatus.textContent).toBe('ℹ️')
     const templateVersionStatus = sut.getByTestId('templateVersion-status')
-    expect(templateVersionStatus.title).toBe('Campo obrigatório')
+    expect(templateVersionStatus.title).toBe(validationStub.errorMessage)
     expect(templateVersionStatus.textContent).toBe('ℹ️')
     const templatePathStatus = sut.getByTestId('templatePath-status')
-    expect(templatePathStatus.title).toBe('Campo obrigatório')
+    expect(templatePathStatus.title).toBe(validationStub.errorMessage)
     expect(templatePathStatus.textContent).toBe('ℹ️')
     const templateToolStatus = sut.getByTestId('templateTool-status')
-    expect(templateToolStatus.title).toBe('Campo obrigatório')
+    expect(templateToolStatus.title).toBe(validationStub.errorMessage)
     expect(templateToolStatus.textContent).toBe('ℹ️')
     const gitUserStatus = sut.getByTestId('gitUser-status')
-    expect(gitUserStatus.title).toBe('Campo obrigatório')
+    expect(gitUserStatus.title).toBe(validationStub.errorMessage)
     expect(gitUserStatus.textContent).toBe('ℹ️')
     const gitPasswordStatus = sut.getByTestId('gitPassword-status')
-    expect(gitPasswordStatus.title).toBe('Campo obrigatório')
+    expect(gitPasswordStatus.title).toBe(validationStub.errorMessage)
     expect(gitPasswordStatus.textContent).toBe('ℹ️')
     const sonarHostStatus = sut.getByTestId('sonarHost-status')
-    expect(sonarHostStatus.title).toBe('Campo obrigatório')
+    expect(sonarHostStatus.title).toBe(validationStub.errorMessage)
     expect(sonarHostStatus.textContent).toBe('ℹ️')
     const sonarTokenStatus = sut.getByTestId('sonarToken-status')
-    expect(sonarTokenStatus.title).toBe('Campo obrigatório')
+    expect(sonarTokenStatus.title).toBe(validationStub.errorMessage)
     expect(sonarTokenStatus.textContent).toBe('ℹ️')
     const remoteStateNameStatus = sut.getByTestId('remoteStateName-status')
-    expect(remoteStateNameStatus.title).toBe('Campo obrigatório')
+    expect(remoteStateNameStatus.title).toBe(validationStub.errorMessage)
     expect(remoteStateNameStatus.textContent).toBe('ℹ️')
     const remoteStateBusinessUnitStatus = sut.getByTestId('remoteStateBusinessUnit-status')
-    expect(remoteStateBusinessUnitStatus.title).toBe('Campo opcional')
+    expect(remoteStateBusinessUnitStatus.title).toBe(validationStub.errorMessage)
     expect(remoteStateBusinessUnitStatus.textContent).toBe('ℹ️')
     const remoteStateEnvironmentStatus = sut.getByTestId('remoteStateEnvironment-status')
-    expect(remoteStateEnvironmentStatus.title).toBe('Campo opcional')
+    expect(remoteStateEnvironmentStatus.title).toBe(validationStub.errorMessage)
     expect(remoteStateEnvironmentStatus.textContent).toBe('ℹ️')
     const remoteStateVendorStatus = sut.getByTestId('remoteStateVendor-status')
-    expect(remoteStateVendorStatus.title).toBe('Campo obrigatório')
+    expect(remoteStateVendorStatus.title).toBe(validationStub.errorMessage)
     expect(remoteStateVendorStatus.textContent).toBe('ℹ️')
     const remoteStateRegionStatus = sut.getByTestId('remoteStateRegion-status')
-    expect(remoteStateRegionStatus.title).toBe('Campo obrigatório')
+    expect(remoteStateRegionStatus.title).toBe(validationStub.errorMessage)
     expect(remoteStateRegionStatus.textContent).toBe('ℹ️')
     const remoteStateTypeStatus = sut.getByTestId('remoteStateType-status')
-    expect(remoteStateTypeStatus.title).toBe('Campo obrigatório')
+    expect(remoteStateTypeStatus.title).toBe(validationStub.errorMessage)
     expect(remoteStateTypeStatus.textContent).toBe('ℹ️')
     const outputNameStatus = sut.getByTestId('outputName-status')
-    expect(outputNameStatus.title).toBe('Campo obrigatório')
+    expect(outputNameStatus.title).toBe(validationStub.errorMessage)
     expect(outputNameStatus.textContent).toBe('ℹ️')
   })
 
-  test('should call Validation with correct name', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const nameInput = sut.getByTestId('name')
-    fireEvent.input(nameInput, { target: { value: customer.name } })
-    expect(validationSpy.fieldName).toBe('name')
-    expect(validationSpy.fieldValue).toBe(customer.name)
-  })
-
-  test('should call Validation with correct templateName', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const templateNameInput = sut.getByTestId('templateName')
-    fireEvent.input(templateNameInput, { target: { value: customer.templates[0].name } })
-    expect(validationSpy.fieldName).toBe('templateName')
-    expect(validationSpy.fieldValue).toBe(customer.templates[0].name)
-  })
-
-  test('should call Validation with correct templateType', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const templateTypeInput = sut.getByTestId('templateType')
-    fireEvent.input(templateTypeInput, { target: { value: customer.templates[0].type } })
-    expect(validationSpy.fieldName).toBe('templateType')
-    expect(validationSpy.fieldValue).toBe(customer.templates[0].type)
-  })
-
-  test.skip('should call Validation with "on" if templateCi is marked', () => {
-    const { sut, validationSpy } = makeSut()
-    const templateCiInput = sut.getByTestId('templateCi')
-    fireEvent.click(templateCiInput)
-    expect(validationSpy.fieldName).toBe('templateCi')
-    expect(validationSpy.fieldValue).toBe(true)
-  })
-
-  test.skip('should call Validation with "off" templateCi is not marked', () => {
-    const { sut, validationSpy } = makeSut()
-    sut.getByTestId('templateCi')
-    expect(validationSpy.fieldName).toBe('templateCi')
-    expect(validationSpy.fieldValue).toBe(false)
-  })
-
-  test.skip('should call Validation with "on" if templateCd is marked', () => {
-    const { sut, validationSpy } = makeSut()
-    const templateCdInput = sut.getByTestId('templateCd')
-    fireEvent.click(templateCdInput)
-    expect(validationSpy.fieldName).toBe('templateCd')
-    expect(validationSpy.fieldValue).toBe(true)
-  })
-
-  test.skip('should call Validation with "off" templateCi is not marked', () => {
-    const { sut, validationSpy } = makeSut()
-    sut.getByTestId('templateCi')
-    expect(validationSpy.fieldName).toBe('templateCd')
-    expect(validationSpy.fieldValue).toBe(false)
-  })
-
-  test('should call Validation with "on" if templateVendor is marked', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const templateVendorInput = sut.getByTestId('templateVendor')
-    fireEvent.input(templateVendorInput, { target: { value: customer.templates[0].vendor } })
-    expect(validationSpy.fieldName).toBe('templateVendor')
-    expect(validationSpy.fieldValue).toBe(customer.templates[0].vendor)
-  })
-
-  test('should call Validation with correct templateLang', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const templateLangInput = sut.getByTestId('templateLang')
-    fireEvent.input(templateLangInput, { target: { value: customer.templates[0].lang } })
-    expect(validationSpy.fieldName).toBe('templateLang')
-    expect(validationSpy.fieldValue).toBe(customer.templates[0].lang)
-  })
-
-  test('should call Validation with correct templateVersion', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const templateVersionInput = sut.getByTestId('templateVersion')
-    fireEvent.input(templateVersionInput, { target: { value: customer.templates[0].version } })
-    expect(validationSpy.fieldName).toBe('templateVersion')
-    expect(validationSpy.fieldValue).toBe(customer.templates[0].version)
-  })
-
-  test('should call Validation with correct templatePath', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const templatePathInput = sut.getByTestId('templatePath')
-    fireEvent.input(templatePathInput, { target: { value: customer.templates[0].path } })
-    expect(validationSpy.fieldName).toBe('templatePath')
-    expect(validationSpy.fieldValue).toBe(customer.templates[0].path)
-  })
-
-  test('should call Validation with correct templateTool', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const templateToolInput = sut.getByTestId('templateTool')
-    fireEvent.input(templateToolInput, { target: { value: customer.templates[0].tool } })
-    expect(validationSpy.fieldName).toBe('templateTool')
-    expect(validationSpy.fieldValue).toBe(customer.templates[0].tool)
-  })
-
-  test('should call Validation with correct gitUser', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const gitUserInput = sut.getByTestId('gitUser')
-    fireEvent.input(gitUserInput, { target: { value: customer.git.user } })
-    expect(validationSpy.fieldName).toBe('gitUser')
-    expect(validationSpy.fieldValue).toBe(customer.git.user)
-  })
-
-  test('should call Validation with correct gitPassword', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const gitPasswordInput = sut.getByTestId('gitPassword')
-    fireEvent.input(gitPasswordInput, { target: { value: customer.git.pass } })
-    expect(validationSpy.fieldName).toBe('gitPassword')
-    expect(validationSpy.fieldValue).toBe(customer.git.pass)
-  })
-
-  test('should call Validation with correct sonarHost', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const sonarHostInput = sut.getByTestId('sonarHost')
-    fireEvent.input(sonarHostInput, { target: { value: customer.sonar.host } })
-    expect(validationSpy.fieldName).toBe('sonarHost')
-    expect(validationSpy.fieldValue).toBe(customer.sonar.host)
-  })
-
-  test('should call Validation with correct remoteStateName', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const remoteStateNameInput = sut.getByTestId('remoteStateName')
-    fireEvent.input(remoteStateNameInput, { target: { value: customer.remoteState[0].name } })
-    expect(validationSpy.fieldName).toBe('remoteStateName')
-    expect(validationSpy.fieldValue).toBe(customer.remoteState[0].name)
-  })
-
-  test('should call Validation with correct remoteStateBusinessUnit', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const remoteStateBusinessUnitInput = sut.getByTestId('remoteStateBusinessUnit')
-    fireEvent.input(remoteStateBusinessUnitInput, { target: { value: customer.remoteState[0].businessUnit } })
-    expect(validationSpy.fieldName).toBe('remoteStateBusinessUnit')
-    expect(validationSpy.fieldValue).toBe(customer.remoteState[0].businessUnit)
-  })
-
-  test('should call Validation with correct remoteStateEnvironment', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const remoteStateEnvironmentInput = sut.getByTestId('remoteStateEnvironment')
-    fireEvent.input(remoteStateEnvironmentInput, { target: { value: customer.remoteState[0].environment } })
-    expect(validationSpy.fieldName).toBe('remoteStateEnvironment')
-    expect(validationSpy.fieldValue).toBe(customer.remoteState[0].environment)
-  })
-
-  test('should call Validation with correct remoteStateVendor', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const remoteStateVendorInput = sut.getByTestId('remoteStateVendor')
-    fireEvent.input(remoteStateVendorInput, { target: { value: customer.remoteState[0].vendor } })
-    expect(validationSpy.fieldName).toBe('remoteStateVendor')
-    expect(validationSpy.fieldValue).toBe(customer.remoteState[0].vendor)
-  })
-
-  test('should call Validation with correct remoteStateRegion', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const remoteStateRegionInput = sut.getByTestId('remoteStateRegion')
-    fireEvent.input(remoteStateRegionInput, { target: { value: customer.remoteState[0].region } })
-    expect(validationSpy.fieldName).toBe('remoteStateRegion')
-    expect(validationSpy.fieldValue).toBe(customer.remoteState[0].region)
-  })
-
-  test('should call Validation with correct remoteStateType', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const remoteStateTypeInput = sut.getByTestId('remoteStateType')
-    fireEvent.input(remoteStateTypeInput, { target: { value: customer.remoteState[0].type } })
-    expect(validationSpy.fieldName).toBe('remoteStateType')
-    expect(validationSpy.fieldValue).toBe(customer.remoteState[0].type)
-  })
-
-  test('should call Validation with correct outputName', () => {
-    const { sut, validationSpy } = makeSut()
-    const customer = mockCustomer()
-    const outputNameInput = sut.getByTestId('outputName')
-    fireEvent.input(outputNameInput, { target: { value: customer.output.name } })
-    expect(validationSpy.fieldName).toBe('outputName')
-    expect(validationSpy.fieldValue).toBe(customer.output.name)
-  })
-
   test('should show name error if Validation fails', () => {
-    const { sut, validationSpy } = makeSut()
+    const { sut, validationStub } = makeSut()
     const nameInput = sut.getByTestId('name')
     fireEvent.input(nameInput, { target: { value: mockCustomer().name } })
     const nameStatus = sut.getByTestId('name-status')
-    expect(nameStatus.title).toBe(validationSpy.errorMessage)
+    expect(nameStatus.title).toBe(validationStub.errorMessage)
     expect(nameStatus.textContent).toBe('❌')
+  })
+
+  test('should show templateName error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const templateNameInput = sut.getByTestId('templateName')
+    fireEvent.input(templateNameInput, { target: { value: mockCustomer().templates[0].name } })
+    const templateNameInputStatus = sut.getByTestId('templateName-status')
+    expect(templateNameInputStatus.title).toBe(validationStub.errorMessage)
+    expect(templateNameInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show templateType error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const templateTypeInput = sut.getByTestId('templateType')
+    fireEvent.input(templateTypeInput, { target: { value: mockCustomer().templates[0].type } })
+    const templateTypeInputStatus = sut.getByTestId('templateType-status')
+    expect(templateTypeInputStatus.title).toBe(validationStub.errorMessage)
+    expect(templateTypeInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show templateType error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const templateTypeInput = sut.getByTestId('templateType')
+    fireEvent.input(templateTypeInput, { target: { value: mockCustomer().templates[0].type } })
+    const templateTypeInputStatus = sut.getByTestId('templateType-status')
+    expect(templateTypeInputStatus.title).toBe(validationStub.errorMessage)
+    expect(templateTypeInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show templateCi error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const templateCiInput = sut.getByTestId('templateCi')
+    fireEvent.input(templateCiInput, { target: { value: mockCustomer().templates[0].ci } })
+    const templateCiInputStatus = sut.getByTestId('templateCi-status')
+    expect(templateCiInputStatus.title).toBe(validationStub.errorMessage)
+    expect(templateCiInputStatus.textContent).toBe('ℹ️')
+  })
+
+  test('should show templateCd error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const templateCdInput = sut.getByTestId('templateCd')
+    fireEvent.input(templateCdInput, { target: { value: mockCustomer().templates[0].cd } })
+    const templateCdInputStatus = sut.getByTestId('templateCd-status')
+    expect(templateCdInputStatus.title).toBe(validationStub.errorMessage)
+    expect(templateCdInputStatus.textContent).toBe('ℹ️')
+  })
+
+  test('should show templateVendor error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const templateVendorInput = sut.getByTestId('templateVendor')
+    fireEvent.input(templateVendorInput, { target: { value: mockCustomer().templates[0].vendor } })
+    const templateVendorInputStatus = sut.getByTestId('templateVendor-status')
+    expect(templateVendorInputStatus.title).toBe(validationStub.errorMessage)
+    expect(templateVendorInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show templateLang error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const templateLangInput = sut.getByTestId('templateLang')
+    fireEvent.input(templateLangInput, { target: { value: mockCustomer().templates[0].lang } })
+    const templateLangInputStatus = sut.getByTestId('templateLang-status')
+    expect(templateLangInputStatus.title).toBe(validationStub.errorMessage)
+    expect(templateLangInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show templateVersion error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const templateVersionInput = sut.getByTestId('templateVersion')
+    fireEvent.input(templateVersionInput, { target: { value: mockCustomer().templates[0].version } })
+    const templateVersionInputStatus = sut.getByTestId('templateVersion-status')
+    expect(templateVersionInputStatus.title).toBe(validationStub.errorMessage)
+    expect(templateVersionInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show templatePath error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const templatePathInput = sut.getByTestId('templatePath')
+    fireEvent.input(templatePathInput, { target: { value: mockCustomer().templates[0].path } })
+    const templatePathInputStatus = sut.getByTestId('templatePath-status')
+    expect(templatePathInputStatus.title).toBe(validationStub.errorMessage)
+    expect(templatePathInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show templateTool error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const templateToolInput = sut.getByTestId('templateTool')
+    fireEvent.input(templateToolInput, { target: { value: mockCustomer().templates[0].tool } })
+    const templateToolInputStatus = sut.getByTestId('templateTool-status')
+    expect(templateToolInputStatus.title).toBe(validationStub.errorMessage)
+    expect(templateToolInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show gitUser error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const gitUserInput = sut.getByTestId('gitUser')
+    fireEvent.input(gitUserInput, { target: { value: mockCustomer().git.user } })
+    const gitUserInputStatus = sut.getByTestId('gitUser-status')
+    expect(gitUserInputStatus.title).toBe(validationStub.errorMessage)
+    expect(gitUserInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show gitPassword error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const gitPasswordInput = sut.getByTestId('gitPassword')
+    fireEvent.input(gitPasswordInput, { target: { value: mockCustomer().git.pass } })
+    const gitPasswordInputStatus = sut.getByTestId('gitPassword-status')
+    expect(gitPasswordInputStatus.title).toBe(validationStub.errorMessage)
+    expect(gitPasswordInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show sonarHost error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const sonarHostInput = sut.getByTestId('sonarHost')
+    fireEvent.input(sonarHostInput, { target: { value: mockCustomer().sonar.host } })
+    const sonarHostInputStatus = sut.getByTestId('sonarHost-status')
+    expect(sonarHostInputStatus.title).toBe(validationStub.errorMessage)
+    expect(sonarHostInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show sonarToken error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const sonarTokenInput = sut.getByTestId('sonarToken')
+    fireEvent.input(sonarTokenInput, { target: { value: mockCustomer().sonar.token } })
+    const sonarTokenInputStatus = sut.getByTestId('sonarToken-status')
+    expect(sonarTokenInputStatus.title).toBe(validationStub.errorMessage)
+    expect(sonarTokenInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show remoteStateName error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const remoteStateNameInput = sut.getByTestId('remoteStateName')
+    fireEvent.input(remoteStateNameInput, { target: { value: mockCustomer().remoteState[0].name } })
+    const remoteStateNameInputStatus = sut.getByTestId('remoteStateName-status')
+    expect(remoteStateNameInputStatus.title).toBe(validationStub.errorMessage)
+    expect(remoteStateNameInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show remoteStateBusinessUnit error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const remoteStateBusinessUnitInput = sut.getByTestId('remoteStateBusinessUnit')
+    fireEvent.input(remoteStateBusinessUnitInput, { target: { value: mockCustomer().remoteState[0].businessUnit } })
+    const remoteStateBusinessUnitInputStatus = sut.getByTestId('remoteStateBusinessUnit-status')
+    expect(remoteStateBusinessUnitInputStatus.title).toBe(validationStub.errorMessage)
+    expect(remoteStateBusinessUnitInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show remoteStateEnvironment error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const remoteStateEnvironmentInput = sut.getByTestId('remoteStateEnvironment')
+    fireEvent.input(remoteStateEnvironmentInput, { target: { value: mockCustomer().remoteState[0].environment } })
+    const remoteStateEnvironmentInputStatus = sut.getByTestId('remoteStateEnvironment-status')
+    expect(remoteStateEnvironmentInputStatus.title).toBe(validationStub.errorMessage)
+    expect(remoteStateEnvironmentInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show remoteStateVendor error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const remoteStateVendorInput = sut.getByTestId('remoteStateVendor')
+    fireEvent.input(remoteStateVendorInput, { target: { value: mockCustomer().remoteState[0].vendor } })
+    const remoteStateVendorInputStatus = sut.getByTestId('remoteStateVendor-status')
+    expect(remoteStateVendorInputStatus.title).toBe(validationStub.errorMessage)
+    expect(remoteStateVendorInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show remoteStateRegion error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const remoteStateRegionInput = sut.getByTestId('remoteStateRegion')
+    fireEvent.input(remoteStateRegionInput, { target: { value: mockCustomer().remoteState[0].region } })
+    const remoteStateRegionInputStatus = sut.getByTestId('remoteStateRegion-status')
+    expect(remoteStateRegionInputStatus.title).toBe(validationStub.errorMessage)
+    expect(remoteStateRegionInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show remoteStateType error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const remoteStateTypeInput = sut.getByTestId('remoteStateType')
+    fireEvent.input(remoteStateTypeInput, { target: { value: mockCustomer().remoteState[0].type } })
+    const remoteStateTypeInputStatus = sut.getByTestId('remoteStateType-status')
+    expect(remoteStateTypeInputStatus.title).toBe(validationStub.errorMessage)
+    expect(remoteStateTypeInputStatus.textContent).toBe('❌')
+  })
+
+  test('should show outputName error if Validation fails', () => {
+    const { sut, validationStub } = makeSut()
+    const outputNameInput = sut.getByTestId('outputName')
+    fireEvent.input(outputNameInput, { target: { value: mockCustomer().output.name } })
+    const outputNameInputStatus = sut.getByTestId('outputName-status')
+    expect(outputNameInputStatus.title).toBe(validationStub.errorMessage)
+    expect(outputNameInputStatus.textContent).toBe('❌')
   })
 })

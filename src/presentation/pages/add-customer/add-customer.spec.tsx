@@ -3,6 +3,7 @@ import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react
 import AddCustomer from './add-customer'
 import { mockCustomer } from '@/domain/test/customer/mock-customer'
 import { ValidationSpy } from '@/presentation/test/mock-validation'
+import faker from 'faker'
 
 type SutTypes = {
   sut: RenderResult
@@ -11,6 +12,7 @@ type SutTypes = {
 
 const makeSut = (): SutTypes => {
   const validationSpy = new ValidationSpy()
+  validationSpy.errorMessage = faker.random.words()
   const sut = render(<AddCustomer validation={validationSpy} />)
   return {
     sut,
@@ -22,13 +24,13 @@ describe('Name of the group', () => {
   afterEach(cleanup)
 
   test('should start with initial state', () => {
-    const { sut } = makeSut()
+    const { sut, validationSpy } = makeSut()
     const errorWrap = sut.getByTestId('error-wrap')
     expect(errorWrap.childElementCount).toBe(0)
     const createButton = sut.getByTestId('createButton') as HTMLButtonElement
     expect(createButton.disabled).toBe(true)
     const nameStatus = sut.getByTestId('name-status')
-    expect(nameStatus.title).toBe('Campo obrigatório')
+    expect(nameStatus.title).toBe(validationSpy.errorMessage)
     expect(nameStatus.textContent).toBe('ℹ️')
     const templateNameStatus = sut.getByTestId('templateName-status')
     expect(templateNameStatus.title).toBe('Campo obrigatório')
@@ -147,6 +149,15 @@ describe('Name of the group', () => {
     sut.getByTestId('templateCi')
     expect(validationSpy.fieldName).toBe('templateCd')
     expect(validationSpy.fieldValue).toBe(false)
+  })
+
+  test('should call Validation with "on" if templateVendor is marked', () => {
+    const { sut, validationSpy } = makeSut()
+    const customer = mockCustomer()
+    const templateVendorInput = sut.getByTestId('templateVendor')
+    fireEvent.input(templateVendorInput, { target: { value: customer.templates[0].vendor } })
+    expect(validationSpy.fieldName).toBe('templateVendor')
+    expect(validationSpy.fieldValue).toBe(customer.templates[0].vendor)
   })
 
   test('should call Validation with correct templateLang', () => {
@@ -273,5 +284,14 @@ describe('Name of the group', () => {
     fireEvent.input(outputNameInput, { target: { value: customer.output.name } })
     expect(validationSpy.fieldName).toBe('outputName')
     expect(validationSpy.fieldValue).toBe(customer.output.name)
+  })
+
+  test('should show name error if Validation fails', () => {
+    const { sut, validationSpy } = makeSut()
+    const nameInput = sut.getByTestId('name')
+    fireEvent.input(nameInput, { target: { value: mockCustomer().name } })
+    const nameStatus = sut.getByTestId('name-status')
+    expect(nameStatus.title).toBe(validationSpy.errorMessage)
+    expect(nameStatus.textContent).toBe('❌')
   })
 })

@@ -19,8 +19,8 @@ const Input: React.FC<Props> = (props: Props) => {
 
   const getStatus = (): string => {
     if (props.type === 'checkbox') return 'ℹ️'
-    return 'ℹ️'
-    // ❌
+    if (state[`${props.name}`] === '') return 'ℹ️'
+    return error ? '❌' : '✔️'
   }
 
   const getTitle = (): string => {

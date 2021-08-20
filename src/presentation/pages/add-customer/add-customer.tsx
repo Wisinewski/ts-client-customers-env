@@ -20,6 +20,7 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     templateType: '',
     templateCi: 'false',
     templateCd: 'false',
+    templateVendor: '',
     templateLang: '',
     templateVersion: '',
     templatePath: '',
@@ -27,6 +28,7 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     gitUser: '',
     gitPassword: '',
     sonarHost: '',
+    sonarToken: '',
     remoteStateName: '',
     remoteStateBusinessUnit: '',
     remoteStateEnvironment: '',
@@ -34,7 +36,7 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     remoteStateRegion: '',
     remoteStateType: '',
     outputName: '',
-    nameError: 'Campo obrigatório',
+    nameError: '',
     templateNameError: 'Campo obrigatório',
     templateTypeError: 'Campo obrigatório',
     templateCiError: 'Campo opcional',
@@ -58,7 +60,10 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     mainError: ''
   })
   useEffect(() => {
-    validation.validate('name', state.name)
+    setState({
+      ...state,
+      nameError: validation.validate('name', state.name)
+    })
   }, [state.name])
   useEffect(() => {
     validation.validate('templateName', state.templateName)
@@ -72,6 +77,9 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
   useEffect(() => {
     validation.validate('templateCd', state.templateCd)
   }, [state.templateCd])
+  useEffect(() => {
+    validation.validate('templateVendor', state.templateVendor)
+  }, [state.templateVendor])
   useEffect(() => {
     validation.validate('templateLang', state.templateLang)
   }, [state.templateLang])
@@ -93,6 +101,9 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
   useEffect(() => {
     validation.validate('sonarHost', state.sonarHost)
   }, [state.sonarHost])
+  useEffect(() => {
+    validation.validate('sonarToken', state.sonarToken)
+  }, [state.sonarToken])
   useEffect(() => {
     validation.validate('remoteStateName', state.remoteStateName)
   }, [state.remoteStateName])

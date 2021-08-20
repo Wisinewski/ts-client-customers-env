@@ -134,7 +134,7 @@ const AddCustomer: React.FC<Props> = ({ validation, addCustomer }: Props) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
-    if (state.isLoading) {
+    if (state.isLoading || hasValidationError()) {
       return
     }
     setState({
@@ -181,7 +181,7 @@ const AddCustomer: React.FC<Props> = ({ validation, addCustomer }: Props) => {
       <ModalHeader title="Adicionar cliente" />
 
       <Context.Provider value={{ state, setState }}>
-        <form id="add-customer" className={Styles.form} onSubmit={handleSubmit}>
+        <form data-testid="form" id="add-customer" className={Styles.form} onSubmit={handleSubmit}>
           <Input type="text" name="name" id="name" title="Nome *" />
 
           <section className={Styles.inputArea}>

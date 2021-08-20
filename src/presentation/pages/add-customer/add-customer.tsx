@@ -37,94 +37,74 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     remoteStateType: '',
     outputName: '',
     nameError: '',
-    templateNameError: 'Campo obrigatório',
-    templateTypeError: 'Campo obrigatório',
-    templateCiError: 'Campo opcional',
-    templateCdError: 'Campo opcional',
-    templateVendorError: 'Campo opcional',
-    templateLangError: 'Campo obrigatório',
-    templateVersionError: 'Campo obrigatório',
-    templatePathError: 'Campo obrigatório',
-    templateToolError: 'Campo obrigatório',
-    gitUserError: 'Campo obrigatório',
-    gitPasswordError: 'Campo obrigatório',
-    sonarHostError: 'Campo obrigatório',
-    sonarTokenError: 'Campo obrigatório',
-    remoteStateNameError: 'Campo obrigatório',
-    remoteStateBusinessUnitError: 'Campo opcional',
-    remoteStateEnvironmentError: 'Campo opcional',
-    remoteStateVendorError: 'Campo obrigatório',
-    remoteStateRegionError: 'Campo obrigatório',
-    remoteStateTypeError: 'Campo obrigatório',
-    outputNameError: 'Campo obrigatório',
+    templateNameError: '',
+    templateTypeError: '',
+    templateCiError: '',
+    templateCdError: '',
+    templateVendorError: '',
+    templateLangError: '',
+    templateVersionError: '',
+    templatePathError: '',
+    templateToolError: '',
+    gitUserError: '',
+    gitPasswordError: '',
+    sonarHostError: '',
+    sonarTokenError: '',
+    remoteStateNameError: '',
+    remoteStateBusinessUnitError: '',
+    remoteStateEnvironmentError: '',
+    remoteStateVendorError: '',
+    remoteStateRegionError: '',
+    remoteStateTypeError: '',
+    outputNameError: '',
     mainError: ''
   })
   useEffect(() => {
     setState({
       ...state,
-      nameError: validation.validate('name', state.name)
+      nameError: validation.validate('name', state.name),
+      templateNameError: validation.validate('templateName', state.templateName),
+      templateTypeError: validation.validate('templateType', state.templateType),
+      templateCiError: validation.validate('templateCi', state.templateCi),
+      templateCdError: validation.validate('templateCd', state.templateCd),
+      templateVendorError: validation.validate('templateVendor', state.templateVendor),
+      templateLangError: validation.validate('templateLang', state.templateLang),
+      templateVersionError: validation.validate('templateVersion', state.templateVersion),
+      templatePathError: validation.validate('templatePath', state.templatePath),
+      templateToolError: validation.validate('templateTool', state.templateTool),
+      gitUserError: validation.validate('gitUser', state.gitUser),
+      gitPasswordError: validation.validate('gitPassword', state.gitPassword),
+      sonarHostError: validation.validate('sonarHost', state.sonarHost),
+      sonarTokenError: validation.validate('sonarToken', state.sonarToken),
+      remoteStateNameError: validation.validate('remoteStateName', state.remoteStateName),
+      remoteStateBusinessUnitError: validation.validate('remoteStateBusinessUnit', state.remoteStateBusinessUnit),
+      remoteStateEnvironmentError: validation.validate('remoteStateEnvironment', state.remoteStateEnvironment),
+      remoteStateVendorError: validation.validate('remoteStateVendor', state.remoteStateVendor),
+      remoteStateRegionError: validation.validate('remoteStateRegion', state.remoteStateRegion),
+      remoteStateTypeError: validation.validate('remoteStateType', state.remoteStateType),
+      outputNameError: validation.validate('outputName', state.outputName)
     })
-  }, [state.name])
-  useEffect(() => {
-    validation.validate('templateName', state.templateName)
-  }, [state.templateName])
-  useEffect(() => {
-    validation.validate('templateType', state.templateType)
-  }, [state.templateType])
-  useEffect(() => {
-    validation.validate('templateCi', state.templateCi)
-  }, [state.templateCi])
-  useEffect(() => {
-    validation.validate('templateCd', state.templateCd)
-  }, [state.templateCd])
-  useEffect(() => {
-    validation.validate('templateVendor', state.templateVendor)
-  }, [state.templateVendor])
-  useEffect(() => {
-    validation.validate('templateLang', state.templateLang)
-  }, [state.templateLang])
-  useEffect(() => {
-    validation.validate('templateVersion', state.templateVersion)
-  }, [state.templateVersion])
-  useEffect(() => {
-    validation.validate('templatePath', state.templatePath)
-  }, [state.templatePath])
-  useEffect(() => {
-    validation.validate('templateTool', state.templateTool)
-  }, [state.templateTool])
-  useEffect(() => {
-    validation.validate('gitUser', state.gitUser)
-  }, [state.gitUser])
-  useEffect(() => {
-    validation.validate('gitPassword', state.gitPassword)
-  }, [state.gitPassword])
-  useEffect(() => {
-    validation.validate('sonarHost', state.sonarHost)
-  }, [state.sonarHost])
-  useEffect(() => {
-    validation.validate('sonarToken', state.sonarToken)
-  }, [state.sonarToken])
-  useEffect(() => {
-    validation.validate('remoteStateName', state.remoteStateName)
-  }, [state.remoteStateName])
-  useEffect(() => {
-    validation.validate('remoteStateBusinessUnit', state.remoteStateBusinessUnit)
-  }, [state.remoteStateBusinessUnit])
-  useEffect(() => {
-    validation.validate('remoteStateEnvironment', state.remoteStateEnvironment)
-  }, [state.remoteStateEnvironment])
-  useEffect(() => {
-    validation.validate('remoteStateVendor', state.remoteStateVendor)
-  }, [state.remoteStateVendor])
-  useEffect(() => {
-    validation.validate('remoteStateRegion', state.remoteStateRegion)
-  }, [state.remoteStateRegion])
-  useEffect(() => {
-    validation.validate('remoteStateType', state.remoteStateType)
-  }, [state.remoteStateType])
-  useEffect(() => {
-    validation.validate('outputName', state.outputName)
-  }, [state.outputName])
+  }, [state.name,
+    state.templateName,
+    state.templateType,
+    state.templateCi,
+    state.templateCd,
+    state.templateVendor,
+    state.templateLang,
+    state.templateVersion,
+    state.templatePath,
+    state.templateTool,
+    state.gitUser,
+    state.gitPassword,
+    state.sonarHost,
+    state.sonarToken,
+    state.remoteStateName,
+    state.remoteStateBusinessUnit,
+    state.remoteStateEnvironment,
+    state.remoteStateVendor,
+    state.remoteStateRegion,
+    state.remoteStateType,
+    state.outputName])
 
   return (
     <div className={Styles.addCustomer}>

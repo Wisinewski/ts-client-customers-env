@@ -22,6 +22,8 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
     templateCd: false,
     templateLang: '',
     templateVersion: '',
+    templatePath: '',
+    templateTool: '',
     nameError: 'Campo obrigatório',
     templateNameError: 'Campo obrigatório',
     templateTypeError: 'Campo obrigatório',
@@ -66,6 +68,12 @@ const AddCustomer: React.FC<Props> = ({ validation }: Props) => {
   useEffect(() => {
     validation.validate({ templateVersion: state.templateVersion })
   }, [state.templateVersion])
+  useEffect(() => {
+    validation.validate({ templatePath: state.templatePath })
+  }, [state.templatePath])
+  useEffect(() => {
+    validation.validate({ templateTool: state.templateTool })
+  }, [state.templateTool])
 
   return (
     <div className={Styles.addCustomer}>

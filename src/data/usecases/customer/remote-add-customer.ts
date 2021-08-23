@@ -1,3 +1,4 @@
+import { NameInUseError } from './../../../domain/errors/name-in-use-error'
 import { ServerError } from '@/domain/errors/server-error'
 import { NotFoundError } from '@/domain/errors/not-found-error'
 import { UnexpectedError } from '@/domain/errors/unexpected-error'
@@ -20,6 +21,7 @@ export class RemoteAddCustomer implements AddCustomer {
     switch (httpResponse.statusCode) {
       case HttpStatusCode.created: return httpResponse.body
       case HttpStatusCode.notFound: throw new NotFoundError()
+      case HttpStatusCode.conflict: throw new NameInUseError(customerParams.name)
       case HttpStatusCode.serverError: throw new ServerError()
       default: throw new UnexpectedError()
     }

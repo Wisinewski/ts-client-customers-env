@@ -25,8 +25,15 @@ describe('ValidationComposite', () => {
     const { sut, fieldValidationSpies } = makeSut(field)
     const firstError = faker.random.words()
     fieldValidationSpies[0].error = new Error(firstError)
-    fieldValidationSpies[1].error = new Error('second_error')
+    fieldValidationSpies[1].error = new Error(faker.random.words())
     const error = sut.validate(field, faker.random.word())
     expect(error).toBe(firstError)
+  })
+
+  test('should return falsy if no one validation fails', () => {
+    const field = faker.database.column()
+    const { sut } = makeSut(field)
+    const error = sut.validate(field, faker.random.word())
+    expect(error).toBeFalsy()
   })
 })

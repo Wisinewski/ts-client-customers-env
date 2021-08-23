@@ -1,3 +1,4 @@
+import { NameInUseError } from '@/domain/errors/name-in-use-error'
 import { ServerError } from '@/domain/errors/server-error'
 import { NotFoundError } from '@/domain/errors/not-found-error'
 import { UnexpectedError } from '@/domain/errors/unexpected-error'
@@ -53,6 +54,16 @@ describe('RemoteAddCustomer', () => {
     }
     const promise = sut.add(mockCustomerParams())
     await expect(promise).rejects.toThrow(new NotFoundError())
+  })
+
+  test('should throw NameInUseError if HttpPostClient returns 409', async () => {
+    const { sut, httpPostClientSpy } = makeSut()
+    httpPostClientSpy.response = {
+      statusCode: HttpStatusCode.conflict
+    }
+    const customer = mockCustomerParams()
+    const promise = sut.add(customer)
+    await expect(promise).rejects.toThrow(new NameInUseError(customer.name))
   })
 
   test('should throw NotFoundError if HttpPostClient returns 500', async () => {

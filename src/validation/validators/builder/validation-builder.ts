@@ -1,3 +1,4 @@
+import { BooleanFieldValidation } from '@/validation/validators/boolean-field/boolean-field-validation'
 import { RequiredFieldValidation } from '@/validation/validators/required-field/required-field-validation'
 import { FieldValidation } from '@/validation/protocols/field-validation'
 
@@ -13,6 +14,11 @@ export class ValidationBuilder {
 
   required (): ValidationBuilder {
     this.validations.push(new RequiredFieldValidation(this.fieldName))
+    return this
+  }
+
+  boolean (): ValidationBuilder {
+    this.validations.push(new BooleanFieldValidation(this.fieldName))
     return this
   }
 

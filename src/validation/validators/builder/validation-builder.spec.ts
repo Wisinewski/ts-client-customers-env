@@ -15,4 +15,13 @@ describe('ValidationBuilder', () => {
     const validations = sut.field(field).boolean().build()
     expect(validations).toEqual([new BooleanFieldValidation(field)])
   })
+
+  test('should return a list of validations', () => {
+    const field = faker.database.column()
+    const validations = sut.field(field).required().boolean().build()
+    expect(validations).toEqual([
+      new RequiredFieldValidation(field),
+      new BooleanFieldValidation(field)
+    ])
+  })
 })

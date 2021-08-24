@@ -1,0 +1,18 @@
+@import '../../../styles/colors.scss';
+
+.addButton {
+  width: 48px;
+  height: 32px;
+  border: none;
+  background-color: $color-header;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
+
+  i {
+    font-size: 16px;
+    color: $color-button;
+  }
+}

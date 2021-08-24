@@ -1,0 +1,21 @@
+@import '../../styles/colors.scss';
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid $color-bg-primary;
+
+  .status {
+    height: 94%;
+    width: 24px;
+    font-size: 14px;
+    position: absolute;
+    right: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: help;
+    background-color: $color-bg-disabled;
+  }
+}

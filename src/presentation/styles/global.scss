@@ -1,0 +1,47 @@
+@import '../styles/colors.scss';
+
+* {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+label {
+  font-size: 12px;
+  padding: 0 8px;
+  position: absolute;
+  left: 5px;
+  top: -9px;
+  background-color: $color-bg-secondary;
+}
+
+input {
+  border: none;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  line-height: 32px;
+  padding-left: 8px;
+  padding-right: 28px;
+  background: none;
+
+  &:focus {
+    outline-color: $color-header;
+  }
+}
+
+input[type="checkbox"] {
+  width: 72%;
+  height: 56%;
+}

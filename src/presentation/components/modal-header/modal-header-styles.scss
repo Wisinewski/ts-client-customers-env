@@ -1,0 +1,13 @@
+@import '../../styles/colors.scss';
+
+.header {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  background-color: $color-header;
+
+  .title {
+    color: $color-title-primary;
+  }
+}

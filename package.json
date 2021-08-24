@@ -1,6 +1,6 @@
 {
   "name": "ts-client-customers-env",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": "https://github.com/Wisinewski/ts-client-customers-env",
   "author": "Giancarlo Gomes <giancarlo.gomes@fcamara.com.br>",
   "scripts": {
